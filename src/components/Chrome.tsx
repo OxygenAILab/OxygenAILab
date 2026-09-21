@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { siteConfig } from "../config";
 import logoImage from "../../assets/images/logo.png";
 
-export function Header() {
+export function Header({ active = "home" }: { active?: "home" | "about" }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,10 +20,10 @@ export function Header() {
           <span>{siteConfig.brand}</span>
         </a>
         <nav className="site-nav" aria-label="主导航">
-          <a href="#products">产品</a>
-          <a href="#model">OxygenDCM N1</a>
-          <a href="#approach">方法</a>
-          <a href="#about">关于</a>
+          <a href={active === "home" ? "#products" : "../#products"}>产品</a>
+          <a href={active === "home" ? "#model" : "../#model"}>OxygenDCM N1</a>
+          <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
+          <a href={active === "home" ? "./about/" : active === "about" ? "#top" : "../about/"}>关于</a>
         </nav>
         <a className="button primary compact" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
           进入 Prima
@@ -33,7 +33,7 @@ export function Header() {
   );
 }
 
-export function Footer() {
+export function Footer({ active = "home" }: { active?: "home" | "about" }) {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -45,10 +45,10 @@ export function Footer() {
           <p>Prima 与 OxygenDCM N1 的母品牌。</p>
         </div>
         <nav aria-label="网站导航">
-          <a href="#products">产品</a>
-          <a href="#model">模型</a>
-          <a href="#approach">方法</a>
-          <a href="#about">关于</a>
+          <a href={active === "home" ? "#products" : "../#products"}>产品</a>
+          <a href={active === "home" ? "#model" : "../#model"}>模型</a>
+          <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
+          <a href={active === "home" ? "./about/" : "../about/"}>关于</a>
         </nav>
         <nav aria-label="Prima 导航">
           <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">Prima 官网</a>
