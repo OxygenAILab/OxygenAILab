@@ -43,7 +43,7 @@ export default function About() {
           <p className="eyebrow">工作原则</p>
           <h2 id="belief-title">少承诺，多验证。</h2>
         </div>
-        <div className="three-grid">
+        <div className="card-grid">
           {beliefs.map((item) => (
             <article className="feature-tile" key={item.title}>
               <h3>{item.title}</h3>

@@ -34,10 +34,10 @@ const steps = [
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="container hero-content reveal">
+      <div className="hero-inner reveal">
         <p className="eyebrow">Oxygen AI</p>
         <h1 id="hero-title">让推理、记忆与执行长在一起。</h1>
-        <p className="hero-copy">
+        <p className="hero-sub">
           Prima 是我们面向真实长任务的 Agent 产品方向。OxygenDCM N1 是规划中的 35B MoE 模型，围绕内生动态认知架构组织注意力、记忆与执行。
         </p>
         <div className="hero-actions">
@@ -62,17 +62,17 @@ export function Products() {
             Oxygen AI 还在早期阶段。我们不急着把所有方向写成产品，而是先在真实长任务中验证哪些能力真正减少返工。
           </p>
         </div>
-        <div className="split-panel reveal">
-          <article className="product-tile">
-            <p className="tag">正在打磨</p>
+        <div className="card-grid reveal">
+          <article className="card">
+            <p className="tag mint">正在打磨</p>
             <h3>Prima</h3>
             <p>面向长项目、长文档与数据分析的 Agent。它探索自适应推理深度、分层长期记忆和更稳定的任务执行。</p>
             <a className="text-link" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
               访问 Prima 官网&nbsp;&rarr;
             </a>
           </article>
-          <article className="product-tile">
-            <p className="tag subtle">规划中</p>
+          <article className="card">
+            <p className="tag peri">规划中</p>
             <h3>{siteConfig.model.name}</h3>
             <p>35B MoE 模型规划，目标是把任务复杂度感知、动态认知深度和长期协作状态放进同一套模型架构。</p>
             <a className="text-link" href="#model">了解规划方向&nbsp;&rarr;</a>
@@ -85,10 +85,10 @@ export function Products() {
 
 export function Model() {
   return (
-    <section className="section model-section" id="model" aria-labelledby="model-title">
+    <section className="section dark" id="model" aria-labelledby="model-title">
       <div className="container">
-        <div className="split-panel media-panel reveal">
-          <div className="media-copy">
+        <div className="split reveal">
+          <div className="split-copy">
             <p className="eyebrow">模型规划</p>
             <h2 id="model-title">{siteConfig.model.name}</h2>
             <p className="lead">
@@ -103,7 +103,7 @@ export function Model() {
               <div><span>阶段</span><strong>{siteConfig.model.status}</strong></div>
             </div>
           </div>
-          <figure className="media-figure">
+          <figure className="split-visual">
             <img
               src={detailImage}
               alt="白色玻璃与光谱折射的抽象视觉，表达模型架构中的动态认知"
@@ -113,9 +113,9 @@ export function Model() {
             />
           </figure>
         </div>
-        <div className="three-grid reveal">
+        <div className="card-grid reveal">
           {capabilities.map((item) => (
-            <article className="feature-tile" key={item.title}>
+            <article className="card" key={item.title}>
               <h3>{item.title}</h3>
               <p>{item.copy}</p>
             </article>
@@ -128,7 +128,7 @@ export function Model() {
 
 export function Approach() {
   return (
-    <section className="section light-section" id="approach" aria-labelledby="approach-title">
+    <section className="section alt" id="approach" aria-labelledby="approach-title">
       <div className="container">
         <div className="section-head reveal">
           <p className="eyebrow">方法</p>
@@ -149,8 +149,8 @@ export function Approach() {
 
 export function About() {
   return (
-    <section className="section cta-section" id="about" aria-labelledby="about-title">
-      <div className="container reveal">
+    <section className="cta-section" id="about" aria-labelledby="about-title">
+      <div className="container reveal" style={{textAlign: "center"}}>
         <p className="eyebrow">关于 Oxygen AI</p>
         <h2 id="about-title">我们在早期，所以更重视真实反馈。</h2>
         <p className="section-copy">
