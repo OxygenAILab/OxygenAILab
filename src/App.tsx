@@ -4,6 +4,13 @@ import { About, Approach, Hero, Model, Products } from "./components/Sections";
 
 export default function App() {
   useEffect(() => {
+    const { hash } = window.location;
+    if (hash) {
+      const target = document.querySelector(hash);
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      target?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
