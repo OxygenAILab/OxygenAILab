@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import AboutApp from "./AboutApp";
+import ModelApp from "./ModelApp";
 import "./site.css";
 
 const rootElement = document.getElementById("root");
@@ -12,6 +13,6 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    {document.body.dataset.page === "about" ? <AboutApp /> : <App />}
+    {document.body.dataset.page === "about" ? <AboutApp /> : document.body.dataset.page === "model" ? <ModelApp /> : <App />}
   </StrictMode>,
 );

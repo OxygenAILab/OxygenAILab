@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about/index.html"),
+        model: resolve(__dirname, "model/index.html"),
       },
     },
   },

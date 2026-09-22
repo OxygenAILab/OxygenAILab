@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { siteConfig } from "../config";
 import logoImage from "../../assets/images/logo.png";
 
-export function Header({ active = "home" }: { active?: "home" | "about" }) {
+export function Header({ active = "home" }: { active?: "home" | "about" | "model" }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function Header({ active = "home" }: { active?: "home" | "about" }) {
         </a>
         <nav className="site-nav" aria-label="主导航">
           <a href={active === "home" ? "#products" : "../#products"}>产品</a>
-          <a href={active === "home" ? "#model" : "../#model"}>OxygenDCM N1</a>
+          <a href={active === "home" ? "./model/" : active === "model" ? "#top" : "../model/"}>OxygenDCM N1</a>
           <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
           <a href={active === "home" ? "./about/" : active === "about" ? "#top" : "../about/"}>关于</a>
         </nav>
@@ -33,7 +33,7 @@ export function Header({ active = "home" }: { active?: "home" | "about" }) {
   );
 }
 
-export function Footer({ active = "home" }: { active?: "home" | "about" }) {
+export function Footer({ active = "home" }: { active?: "home" | "about" | "model" }) {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -46,7 +46,7 @@ export function Footer({ active = "home" }: { active?: "home" | "about" }) {
         </div>
         <nav aria-label="网站导航">
           <a href={active === "home" ? "#products" : "../#products"}>产品</a>
-          <a href={active === "home" ? "#model" : "../#model"}>模型</a>
+          <a href={active === "home" ? "./model/" : "../model/"}>模型</a>
           <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
           <a href={active === "home" ? "./about/" : "../about/"}>关于</a>
         </nav>
