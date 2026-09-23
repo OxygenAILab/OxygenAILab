@@ -11,7 +11,7 @@ function Announce() {
   );
 }
 
-export function Header({ active = "home" }: { active?: "home" | "about" | "model" | "careers" }) {
+export function Header({ active = "home" }: { active?: "home" | "about" | "model" | "careers" | "research" | "news" | "developers" | "contact" }) {
   return (
     <>
       <Announce />
@@ -23,8 +23,10 @@ export function Header({ active = "home" }: { active?: "home" | "about" | "model
         </a>
         <nav className="site-nav" aria-label="主导航">
           <a href={active === "home" ? "#products" : "../#products"}>产品</a>
-          <a href={active === "home" ? "./model/" : active === "model" ? "#top" : "../model/"}>OxygenDCM N1</a>
-          <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
+          <a href={active === "home" ? "./model/" : active === "model" ? "#top" : "../model/"}>模型</a>
+          <a href={active === "home" ? "./research/" : active === "research" ? "#top" : "../research/"}>研究</a>
+          <a href={active === "home" ? "./developers/" : active === "developers" ? "#top" : "../developers/"}>开发者</a>
+          <a href={active === "home" ? "./news/" : active === "news" ? "#top" : "../news/"}>动态</a>
           <a href={active === "home" ? "./about/" : active === "about" ? "#top" : "../about/"}>关于</a>
           <a href={active === "home" ? "./careers/" : active === "careers" ? "#top" : "../careers/"}>加入我们</a>
         </nav>
@@ -37,7 +39,7 @@ export function Header({ active = "home" }: { active?: "home" | "about" | "model
   );
 }
 
-export function Footer({ active = "home" }: { active?: "home" | "about" | "model" | "careers" }) {
+export function Footer({ active = "home" }: { active?: "home" | "about" | "model" | "careers" | "research" | "news" | "developers" | "contact" }) {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -51,7 +53,9 @@ export function Footer({ active = "home" }: { active?: "home" | "about" | "model
         <nav aria-label="网站导航">
           <a href={active === "home" ? "#products" : "../#products"}>产品</a>
           <a href={active === "home" ? "./model/" : "../model/"}>模型</a>
-          <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
+          <a href={active === "home" ? "./research/" : "../research/"}>研究</a>
+          <a href={active === "home" ? "./developers/" : "../developers/"}>开发者</a>
+          <a href={active === "home" ? "./news/" : "../news/"}>动态</a>
           <a href={active === "home" ? "./about/" : "../about/"}>关于</a>
           <a href={active === "home" ? "./careers/" : "../careers/"}>加入我们</a>
         </nav>

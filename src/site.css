@@ -517,6 +517,49 @@ a:focus-visible {
   align-content: start;
 }
 
+/* ---------- News list ---------- */
+.news-list {
+  display: grid;
+  gap: 0;
+}
+.news-item {
+  padding: 36px 0;
+  border-top: 1px solid var(--hairline);
+}
+.news-item:last-child { border-bottom: 1px solid var(--hairline); }
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.news-date {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.news-item h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.news-item p {
+  color: var(--ink-2);
+  font-size: .98rem;
+  line-height: 1.7;
+  max-width: 64ch;
+  margin-bottom: 14px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .fact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
