@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
 import { siteConfig } from "../config";
 import logoImage from "../../assets/images/logo.png";
 
-export function Header({ active = "home" }: { active?: "home" | "about" | "model" }) {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const updateHeader = () => setScrolled(window.scrollY > 24);
-    updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
-    return () => window.removeEventListener("scroll", updateHeader);
-  }, []);
-
+function Announce() {
   return (
-    <header className={scrolled ? "site-header scrolled" : "site-header"} id="top">
+    <div className="announce">
+      <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
+        Prima Agent 正在开放 Beta 调研 →
+      </a>
+    </div>
+  );
+}
+
+export function Header({ active = "home" }: { active?: "home" | "about" | "model" }) {
+  return (
+    <>
+      <Announce />
+      <header className="site-header" id="top">
       <div className="container header-inner">
         <a className="brand" href="#top" aria-label="Oxygen AI 首页">
           <img className="brand-mark" src={logoImage} alt="" width={30} height={30} />
@@ -29,7 +31,8 @@ export function Header({ active = "home" }: { active?: "home" | "about" | "model
           进入 Prima
         </a>
       </div>
-    </header>
+      </header>
+    </>
   );
 }
 

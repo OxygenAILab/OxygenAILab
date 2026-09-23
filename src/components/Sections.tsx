@@ -34,17 +34,19 @@ const steps = [
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <div className="hero-inner reveal">
-        <p className="eyebrow">Oxygen AI</p>
-        <h1 id="hero-title">让推理、记忆与执行长在一起。</h1>
-        <p className="hero-sub">
-          Prima 是我们面向真实长任务的 Agent 产品方向。OxygenDCM N1 是规划中的 35B MoE 模型，围绕内生动态认知架构组织注意力、记忆与执行。
-        </p>
-        <div className="hero-actions">
-          <a className="button primary" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
-            了解 Prima
-          </a>
-          <a className="button ghost" href="#model">查看模型规划</a>
+      <div className="container">
+        <div className="hero-inner reveal">
+          <p className="eyebrow">Oxygen AI</p>
+          <h1 id="hero-title">让推理、记忆与执行长在一起。</h1>
+          <p className="hero-sub">
+            Prima 是我们面向真实长任务的 Agent 产品方向。OxygenDCM N1 是规划中的 35B MoE 模型，围绕内生动态认知架构组织注意力、记忆与执行。
+          </p>
+          <div className="hero-actions">
+            <a className="button primary" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
+              了解 Prima
+            </a>
+            <a className="button ghost" href="#model">查看模型规划</a>
+          </div>
         </div>
       </div>
     </section>
