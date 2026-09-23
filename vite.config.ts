@@ -11,6 +11,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about/index.html"),
         model: resolve(__dirname, "model/index.html"),
+        careers: resolve(__dirname, "careers/index.html"),
       },
     },
   },

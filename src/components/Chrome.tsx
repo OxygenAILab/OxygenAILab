@@ -11,7 +11,7 @@ function Announce() {
   );
 }
 
-export function Header({ active = "home" }: { active?: "home" | "about" | "model" }) {
+export function Header({ active = "home" }: { active?: "home" | "about" | "model" | "careers" }) {
   return (
     <>
       <Announce />
@@ -26,6 +26,7 @@ export function Header({ active = "home" }: { active?: "home" | "about" | "model
           <a href={active === "home" ? "./model/" : active === "model" ? "#top" : "../model/"}>OxygenDCM N1</a>
           <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
           <a href={active === "home" ? "./about/" : active === "about" ? "#top" : "../about/"}>关于</a>
+          <a href={active === "home" ? "./careers/" : active === "careers" ? "#top" : "../careers/"}>加入我们</a>
         </nav>
         <a className="button primary compact" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
           进入 Prima
@@ -36,7 +37,7 @@ export function Header({ active = "home" }: { active?: "home" | "about" | "model
   );
 }
 
-export function Footer({ active = "home" }: { active?: "home" | "about" | "model" }) {
+export function Footer({ active = "home" }: { active?: "home" | "about" | "model" | "careers" }) {
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -52,6 +53,7 @@ export function Footer({ active = "home" }: { active?: "home" | "about" | "model
           <a href={active === "home" ? "./model/" : "../model/"}>模型</a>
           <a href={active === "home" ? "#approach" : "../#approach"}>方法</a>
           <a href={active === "home" ? "./about/" : "../about/"}>关于</a>
+          <a href={active === "home" ? "./careers/" : "../careers/"}>加入我们</a>
         </nav>
         <nav aria-label="Prima 导航">
           <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">Prima 官网</a>
