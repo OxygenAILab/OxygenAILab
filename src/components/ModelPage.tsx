@@ -52,7 +52,7 @@ export default function ModelPage() {
     <main id="main" className="about-page">
       <section className="container about-hero" aria-labelledby="model-hero-title">
         <p className="eyebrow">模型矩阵</p>
-        <h1 id="model-hero-title">两条技术路线，共用一个判断标准。</h1>
+        <h1 id="model-hero-title">两条技术路线，一个判断标准。</h1>
         <p className="lead" style={{ maxWidth: "56ch" }}>
           一条路线在序列生成上做并行探索与对抗校验，另一条把同样的做法搬进隐状态动力学。两者都要控制算力预算，也都要能如实说出自己有多确定。
         </p>
