@@ -23,7 +23,7 @@ export default function Contact() {
     <main id="main" className="about-page">
       <section className="container about-hero" aria-labelledby="contact-hero-title">
         <p className="eyebrow">联系我们</p>
-        <h1 id="contact-hero-title">找到合适的通道。</h1>
+        <h1 id="contact-hero-title">选一个邮箱，直接写。</h1>
         <p className="lead" style={{ maxWidth: "56ch" }}>
           我们是小团队，没有专门的自助客服。写清楚你的问题，我们会尽快回复。
         </p>

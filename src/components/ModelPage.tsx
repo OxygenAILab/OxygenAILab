@@ -5,30 +5,30 @@ import detailImage from "../../assets/images/detail.jpg";
 const tbmPillars = [
   {
     title: "并行探索",
-    copy: "同一个请求同时展开多条互不干扰的探索路径，而不是沿单一线索一路推到底。",
+    copy: "同一个请求同时展开几条互不干扰的路径，不沿着单一线索一路推到底。",
   },
   {
     title: "对抗校验",
-    copy: "让一部分分支专门去证伪结论。分歧被显式保留，而不是被平均掉。",
+    copy: "让一部分分支专门去证伪结论。分歧会保留下来，不取平均。",
   },
   {
     title: "预算内收敛",
-    copy: "探索设预算上限，在给定预算内收敛到可交付的结论，而不是无限推演。",
+    copy: "探索有预算上限。到点就给一个能交付的结论。",
   },
 ];
 
 const cdmTraits = [
   {
     title: "即时判断",
-    copy: "面向需要即时判断的场景，直接给出结论，而不是逐字生成。",
+    copy: "面向需要即时判断的场景，直接给结论，不逐字生成。",
   },
   {
     title: "诚实概率",
-    copy: "同时给出客观概率与主观笃定度；两者明显不一致时主动标记，而不是把自信当成正确。",
+    copy: "同时给出客观概率与主观笃定度。两者明显不一致时会标记出来，不把自信当成正确。",
   },
   {
     title: "拒答即能力",
-    copy: "拒答与转交和正常回答受同一套标准约束：说不确定，也是一种能力。",
+    copy: "拒答和转交跟正常回答用同一套标准。说不确定，也算一种输出。",
   },
 ];
 
@@ -52,9 +52,9 @@ export default function ModelPage() {
     <main id="main" className="about-page">
       <section className="container about-hero" aria-labelledby="model-hero-title">
         <p className="eyebrow">模型矩阵</p>
-        <h1 id="model-hero-title">两条正交的技术路线，同一套认知纪律。</h1>
+        <h1 id="model-hero-title">两条技术路线，共用一个判断标准。</h1>
         <p className="lead" style={{ maxWidth: "56ch" }}>
-          一条路线在序列生成上做并行探索与对抗校验，另一条把同样的认知纪律放到隐状态动力学里。两者共享算力预算意识与诚实输出原则。
+          一条路线在序列生成上做并行探索与对抗校验，另一条把同样的做法搬进隐状态动力学。两者都要控制算力预算，也都要能如实说出自己有多确定。
         </p>
       </section>
 
@@ -79,7 +79,7 @@ export default function ModelPage() {
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">序列生成路线</p>
-            <h2 id="tbm-title">让分支替你怀疑结论。</h2>
+            <h2 id="tbm-title">结论由对立的分支来怀疑。</h2>
             <p className="section-copy">
               Avenues 与 Terrace 走多分支并行的生成范式：每个请求同时展开成对的探索分支，一部分推进推理，一部分专门尝试推翻它。
             </p>
@@ -102,7 +102,7 @@ export default function ModelPage() {
               <p className="eyebrow">校准决策路线</p>
               <h2 id="cdm-title">不确定时，它说不知道。</h2>
               <p className="lead">
-                CDM 是专门输出诚实概率的判别式模型，目标是让「不确定」被准确表达，而不是被自信掩盖。
+                CDM 是专门输出诚实概率的判别式模型。它要做的是把「不确定」说出来，不让自信盖过它。
               </p>
             </div>
             <div className="stack-cards">
@@ -121,9 +121,9 @@ export default function ModelPage() {
         <div className="split">
           <div className="split-copy">
             <p className="eyebrow">DCM 路线</p>
-            <h2 id="arch-title">认知循环长在模型里。</h2>
+            <h2 id="arch-title">探索和收敛都在模型内部完成。</h2>
             <p>
-              DCM 不依赖外部脚本干预，目标是让探索、校验与收敛发生在模型自身的计算过程里，而不是靠外部编排。
+              DCM 不依赖外部脚本干预：探索、校验与收敛都发生在模型自己的计算过程里。
             </p>
           </div>
           <figure className="split-visual">
@@ -141,7 +141,7 @@ export default function ModelPage() {
       <section className="container about-section" aria-labelledby="roadmap-title">
         <div className="section-head">
           <p className="eyebrow">路线图</p>
-          <h2 id="roadmap-title">先验证，再设计，后训练。</h2>
+          <h2 id="roadmap-title">顺序是验证、设计、训练。</h2>
         </div>
         <div className="timeline">
           {roadmap.map((step) => (

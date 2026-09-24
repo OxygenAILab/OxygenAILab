@@ -4,6 +4,7 @@ const items = [
   {
     date: "2026-09",
     tag: "产品",
+    tone: "mint",
     title: "Prima Beta 调研持续进行中",
     copy: "我们正在邀请真实用户参与 Prima 前期调研，用约 5 分钟描述你的使用习惯、痛点和服务期待。入选用户有机会提前体验产品。",
     link: { label: "参与调研", href: siteConfig.betaUrl, external: true },
@@ -11,15 +12,17 @@ const items = [
   {
     date: "2026-09",
     tag: "研究",
-    title: "模型矩阵页面上线",
-    copy: "我们在 Oxygen 官网公开了模型矩阵的规划概览：序列生成路线、隐状态动力学路线与校准决策路线，以及它们与 Prima 产品验证的衔接方式。",
+    tone: "gray",
+    title: "模型矩阵公开：三条路线",
+    copy: "序列生成、隐状态动力学、校准决策三条路线，以及它们与 Prima 产品验证的衔接方式，都写在了模型页上。目前分别处于研究中或规划中。",
     link: { label: "查看模型矩阵", href: "/model/", external: false },
   },
   {
     date: "2026-08",
     tag: "品牌",
-    title: "Oxygen AI 官网上线",
-    copy: "以「让推理、记忆与执行长在一起」为主题的新官网正式上线，同期上线 Prima 官网与 Beta 申请通道。",
+    tone: "gray",
+    title: "Oxygen 官网上线",
+    copy: "新官网与 Prima 官网同期上线。前者讲母品牌与模型规划，后者讲产品，Beta 申请通道也已经开放。",
     link: { label: "访问 Prima 官网", href: siteConfig.productUrl, external: true },
   },
 ];
@@ -31,7 +34,7 @@ export default function News() {
         <p className="eyebrow">新闻与动态</p>
         <h1 id="news-hero-title">我们在做什么。</h1>
         <p className="lead" style={{ maxWidth: "56ch" }}>
-          产品进展、研究里程碑与团队动态都会在这里更新。我们只发布可验证的内容。
+          这里更新得不多，有实质进展才写一条。
         </p>
       </section>
 
@@ -42,7 +45,7 @@ export default function News() {
             <article className="news-item" key={item.title}>
               <div className="news-meta">
                 <span className="news-date">{item.date}</span>
-                <span className={`tag ${item.tag === "研究" ? "peri" : item.tag === "产品" ? "mint" : "gray"}`}>{item.tag}</span>
+                <span className={`tag ${item.tone}`}>{item.tag}</span>
               </div>
               <h3>{item.title}</h3>
               <p>{item.copy}</p>

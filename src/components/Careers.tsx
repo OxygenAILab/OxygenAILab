@@ -4,7 +4,7 @@ const channels = [
   {
     title: "申请实验室面试",
     email: siteConfig.labEmail,
-    tone: "peri",
+    tone: "gray",
     tag: "研究与技术",
     copy: "面向模型架构、Agent 系统与工程方向。请附上简历或 GitHub，并简述你最近做过的最有挑战的一个项目；如果读过我们的页面，也欢迎谈谈你的看法。",
   },
@@ -20,15 +20,15 @@ const channels = [
 const values = [
   {
     title: "少承诺，多验证",
-    copy: "我们不把规划中的能力描述成已经可用。你在这里看到的边界，就是团队内部的边界。",
+    copy: "规划中的能力不会写成已可用。页面上看到的边界，就是团队内部真正在守的那条。",
   },
   {
     title: "问题先于答案",
-    copy: "我们希望你带着真实问题来，而不是急于证明自己。好问题的价值高于漂亮的空答案。",
+    copy: "面试里我们更想听你正在卡住的问题，而不是背下来的答案。",
   },
   {
     title: "连续性",
-    copy: "长任务里的连续性是我们的产品命题，也是我们的工作方式：决策被记录，假设被追踪，复盘成为习惯。",
+    copy: "长任务的连续性是产品命题，也是我们的工作方式：决策写下来，假设有人追，复盘不省略。",
   },
 ];
 
@@ -39,14 +39,14 @@ export default function Careers() {
         <p className="eyebrow">招贤纳士</p>
         <h1 id="careers-hero-title">和我们一起做点需要耐心的事。</h1>
         <p className="lead" style={{ maxWidth: "56ch" }}>
-          Oxygen AI 是一个小而专注的团队。我们相信真实长任务里的连续性是下一个十年最重要的问题之一，正在寻找愿意和我们一起验证它的同伴。
+          Oxygen AI 是一个小团队。我们觉得长任务里的连续性是个值得做十年以上的问题，想找愿意一起验证的人。
         </p>
       </section>
 
       <section className="container about-section" aria-labelledby="channels-title">
         <div className="section-head">
           <p className="eyebrow">两个入口</p>
-          <h2 id="channels-title">选择适合你的方式。</h2>
+          <h2 id="channels-title">两个入口，按方向选。</h2>
         </div>
         <div className="card-grid">
           {channels.map((item) => (
@@ -65,7 +65,7 @@ export default function Careers() {
       <section className="container about-section" aria-labelledby="values-title">
         <div className="section-head">
           <p className="eyebrow">我们的工作方式</p>
-          <h2 id="values-title">先看我们怎么工作。</h2>
+          <h2 id="values-title">先说说我们怎么做事。</h2>
         </div>
         <div className="three-grid">
           {values.map((item) => (

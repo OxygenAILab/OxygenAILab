@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "早期接入会收费吗？",
-    a: "早期接入阶段不收费。我们希望先验证价值，再讨论商业化的形态。",
+    a: "不收费。先把有没有用验证清楚，商业化的事之后再说。",
   },
   {
     q: "使用我的数据训练模型吗？",
@@ -37,7 +37,7 @@ export default function Developers() {
         <p className="eyebrow">开发者</p>
         <h1 id="dev-hero-title">和我们一起验证下一代 Agent。</h1>
         <p className="lead" style={{ maxWidth: "56ch" }}>
-          Oxygen AI 的开发者计划目前采用邀约制。我们希望第一批共创团队来自真实的长任务场景，而不是为了尝鲜。
+          Oxygen AI 的开发者计划目前采用邀约制。第一批共创团队我们倾向于从真实的长任务场景里找，纯尝鲜的先不占名额。
         </p>
       </section>
 
@@ -74,7 +74,7 @@ export default function Developers() {
       <section className="container about-section" aria-labelledby="dev-cta-title">
         <div className="contact-panel">
           <div>
-            <h2 id="dev-cta-title">准备好开始了吗？</h2>
+            <h2 id="dev-cta-title">有具体场景就写信吧。</h2>
             <p>写信介绍你的团队与场景，我们会尽快回复。</p>
           </div>
           <a className="button primary" href={`mailto:${siteConfig.contactEmail}`}>联系我们</a>
