@@ -162,6 +162,55 @@ h3 {
 .site-nav a:hover { color: var(--ink); }
 .site-header .button { margin-left: auto; }
 
+/* ---------- 移动导航：汉堡 + 抽屉 ---------- */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--r-btn);
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform .2s var(--ease), opacity .2s var(--ease);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  padding: 104px 0 32px;
+  background: var(--bg);
+  overflow-y: auto;
+}
+.nav-drawer.open { display: block; }
+.nav-drawer nav { display: grid; }
+.nav-drawer .nav-link {
+  display: block;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+.nav-drawer nav .nav-link:first-child { border-top: 1px solid var(--border); }
+.nav-drawer .button { width: 100%; margin-top: 28px; }
+
 /* ---------- Buttons ---------- */
 .button {
   display: inline-flex;
@@ -799,7 +848,9 @@ a:focus-visible {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  .site-nav { display: none; }
+  .site-nav,
+  .header-cta { display: none; }
+  .nav-toggle { display: inline-flex; }
   .split,
   .card-grid,
   .three-grid { grid-template-columns: 1fr; }

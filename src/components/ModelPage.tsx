@@ -1,4 +1,5 @@
 import { siteConfig } from "../config";
+import { modelMatrix } from "../data/models";
 import detailImage from "../../assets/images/detail.jpg";
 
 const tbmPillars = [
@@ -28,44 +29,6 @@ const cdmTraits = [
   {
     title: "拒答即能力",
     copy: "拒答与转交和正常回答受同一套标准约束：说不确定，也是一种能力。",
-  },
-];
-
-const family = [
-  {
-    name: "OxygenTBM Avenues",
-    series: "序列生成 · 多模态",
-    status: "研究中",
-    tone: "gray",
-    copy: "面向视觉与文本交织任务的多模态探索模型，以序列生成为基底。",
-  },
-  {
-    name: "OxygenTBM Terrace",
-    series: "序列生成 · 文本",
-    status: "研究中",
-    tone: "mint",
-    copy: "纯文本场景的探索模型。同源架构的轻量变体，用于在更低成本下验证同一套探索策略。",
-  },
-  {
-    name: "OxygenDCM N1",
-    series: "隐状态动力学 · 35B MoE",
-    status: "规划中",
-    tone: "gray",
-    copy: "内生动态认知模型。目标是在模型内部完成探索、校验与收敛，而不是靠外部脚本编排。",
-  },
-  {
-    name: "OxygenCDM T1",
-    series: "校准决策 · 文本",
-    status: "规划中",
-    tone: "mint",
-    copy: "文本决策模型。为上游系统提供可审计、可追溯的概率判断层。",
-  },
-  {
-    name: "OxygenCDM V1",
-    series: "校准决策 · 视觉",
-    status: "规划中",
-    tone: "mint",
-    copy: "视觉决策模型。把校准框架扩展到视觉判别任务，与 T1 保持一致的判断口径。",
   },
 ];
 
@@ -101,7 +64,7 @@ export default function ModelPage() {
           <h2 id="family-title">五个模型，覆盖探索与决策。</h2>
         </div>
         <div className="card-grid">
-          {family.map((item) => (
+          {modelMatrix.map((item) => (
             <article className="card" key={item.name}>
               <p className={`tag ${item.tone}`}>{item.status}</p>
               <h3>{item.name}</h3>
