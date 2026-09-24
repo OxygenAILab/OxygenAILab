@@ -74,7 +74,7 @@ export function Products() {
             </a>
           </article>
           <article className="card">
-            <p className="tag peri">规划中</p>
+            <p className="tag gray">规划中</p>
             <h3>{siteConfig.model.name}</h3>
             <p>35B MoE 模型规划，目标是把任务复杂度感知、动态认知深度和长期协作状态放进同一套模型架构。</p>
             <a className="text-link" href="#model">了解规划方向&nbsp;&rarr;</a>
@@ -87,7 +87,7 @@ export function Products() {
 
 export function Model() {
   return (
-    <section className="section dark" id="model" aria-labelledby="model-title">
+    <section className="section alt" id="model" aria-labelledby="model-title">
       <div className="container">
         <div className="split reveal">
           <div className="split-copy">
@@ -130,7 +130,7 @@ export function Model() {
 
 export function Approach() {
   return (
-    <section className="section alt" id="approach" aria-labelledby="approach-title">
+    <section className="section" id="approach" aria-labelledby="approach-title">
       <div className="container">
         <div className="section-head reveal">
           <p className="eyebrow">方法</p>

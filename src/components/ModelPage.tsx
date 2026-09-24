@@ -36,7 +36,7 @@ const family = [
     name: "OxygenTBM Avenues",
     series: "序列生成 · 多模态",
     status: "研究中",
-    tone: "peri",
+    tone: "gray",
     copy: "面向视觉与文本交织任务的多模态探索模型。以序列生成为基底，把并行对抗分支的结论迁移到图文理解与生成场景。",
   },
   {
@@ -50,7 +50,7 @@ const family = [
     name: "OxygenDCM N1",
     series: "隐状态动力学 · 35B MoE",
     status: "规划中",
-    tone: "peri",
+    tone: "gray",
     copy: "内生动态认知模型。把多路探索内化为隐空间子空间演化，把对抗批评内化为带抑制性连接的专家路由，实现 token 级的发散-对抗-收敛循环。",
   },
   {
@@ -112,7 +112,7 @@ export default function ModelPage() {
         </div>
       </section>
 
-      <section className="section dark" aria-labelledby="tbm-title">
+      <section className="section alt" aria-labelledby="tbm-title">
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">序列生成路线</p>
