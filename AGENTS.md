@@ -60,6 +60,7 @@ npm run preview # 预览构建产物
 - `src/data/models.ts` — 模型矩阵的**唯一来源**，模型页与研究页都从这里取，不要在两处各写一份。
 - `src/components/Sections.tsx` — 首页正文区块：Hero、Products、Model、Approach、About。区块内文案数组放在文件顶部。
 - `src/components/Chrome.tsx` — 页头 Header、页脚 Footer、移动抽屉导航，以及页面导航数组（新增页面在此登记）。
+- `src/components/Progress.tsx` — 模型进展与研究页：路线级模型状态、研究方向和可公开记录。
 - `src/components/HeroArtwork.tsx` — 首屏主视觉（CSS + SVG，无素材依赖）。
 - `src/components/SplitArtwork.tsx` — 分栏区块的线稿图，每个区块一张、对应各自的命题，不要在多处复用同一张。
 - `<page>/index.html` — 该页的 `<title>`、`meta description`、`og:*` 分享卡片文案。

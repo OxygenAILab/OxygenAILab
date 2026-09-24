@@ -715,6 +715,120 @@ a:focus-visible {
   align-content: start;
 }
 
+/* ---------- Model progress and research records ---------- */
+.progress-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 32px;
+  margin-top: 36px;
+}
+.progress-index a {
+  color: var(--ink-2);
+  font-size: .95rem;
+  font-weight: 600;
+}
+.progress-index a:hover {
+  color: var(--ink);
+}
+.progress-route-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.progress-route-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+  padding: 32px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.progress-route-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(22, 24, 29, .18);
+  box-shadow: var(--shadow-sm);
+}
+.progress-route-head h3 {
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+}
+.progress-route-head p {
+  min-height: 72px;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+.progress-model-list {
+  display: grid;
+  gap: 0;
+  margin-top: auto;
+  padding: 0;
+  list-style: none;
+}
+.progress-model-list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+.progress-model-list li:first-child {
+  border-top: 0;
+}
+.progress-model-name {
+  font-weight: 650;
+}
+.progress-model-focus {
+  margin-top: 4px;
+  font-size: .88rem;
+  color: var(--ink-3);
+}
+.progress-model-list .tag,
+.progress-record-list .tag {
+  flex: 0 0 auto;
+  margin: 2px 0 0;
+  white-space: nowrap;
+}
+.progress-record-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.progress-record-list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+.progress-record-list li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+.progress-record-main {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.progress-record-date {
+  padding-top: 5px;
+  color: var(--ink-3);
+  font-size: .88rem;
+  font-variant-numeric: tabular-nums;
+}
+.progress-record-main h3 {
+  margin-bottom: 8px;
+}
+.progress-record-main p {
+  color: var(--ink-2);
+  font-size: .95rem;
+  line-height: 1.7;
+}
+
 /* ---------- News list ---------- */
 .news-list {
   display: grid;
@@ -917,12 +1031,18 @@ a:focus-visible {
   .nav-toggle { display: inline-flex; }
   .split,
   .card-grid,
-  .three-grid { grid-template-columns: 1fr; }
+  .three-grid,
+  .progress-route-grid { grid-template-columns: 1fr; }
   .split { gap: 32px; }
   .timeline { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 8px; }
   .contact-panel { grid-template-columns: 1fr; padding: 32px; }
+  .progress-route-card { min-height: 0; padding: 24px; }
+  .progress-route-head p { min-height: 0; }
+  .progress-record-list li { align-items: stretch; flex-direction: column; gap: 12px; }
+  .progress-record-main { grid-template-columns: 1fr; gap: 4px; }
+  .progress-record-main .progress-record-date { padding-top: 0; }
   .section { padding: 88px 0; }
   .about-page { padding: 72px 0 96px; }
   .page-hero,

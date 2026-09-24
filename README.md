@@ -2,13 +2,14 @@
 
 Oxygen AI（`oxygenai.top`）的官网源码。React 19 + Vite 7 + TypeScript，纯静态构建，无 UI 框架、无 Tailwind，样式集中在 `src/site.css`。
 
-站点共 8 个页面：
+站点共 9 个页面：
 
 | 路径 | 标题 | 说明 |
 | --- | --- | --- |
 | `/` | Oxygen AI · Prima 与 OxygenDCM N1 | 首页：主视觉、产品、模型、方法 |
 | `/model/` | 模型矩阵 | 五条模型线（OxygenTBM / OxygenDCM / OxygenCDM）的方向级介绍 |
-| `/research/` | 研究 | 研究方向与开放问题（后续在此扩出「模型进展与研究」页） |
+| `/research/` | 研究 | 研究方向与研究方法 |
+| `/progress/` | 模型进展与研究 | 三条模型路线的当前状态、研究方向和可公开研究记录 |
 | `/about/` | 关于 Oxygen AI | 团队定位与在做的事 |
 | `/developers/` | 开发者 | 接入入口与文档占位 |
 | `/news/` | 新闻与动态 | 已发布的动态列表 |
@@ -49,7 +50,7 @@ npm run preview # 预览 dist/ 构建产物
 
 ```
 index.html              首页入口
-<page>/index.html       其余 7 个页面入口（about / model / research / news / developers / careers / contact）
+<page>/index.html       其余 8 个页面入口（about / model / research / progress / news / developers / careers / contact）
 vite.config.ts          多页构建：rollupOptions.input 逐个登记页面入口，base 为 "./"
 src/
   main.tsx              读 document.body.dataset.page，交给 PageApp 分发
@@ -130,4 +131,4 @@ docs/                   GitHub Pages 的实际发布目录，见下节
 
 ## 还没做（下一阶段）
 
-- **② 模型进展与研究**：模型矩阵按 StepFun 那样排版（当前是卡片矩阵，非时间线/对比表）；新建模仿 [seed.bytedance.com/zh/research](https://seed.bytedance.com/zh/research) 的「模型进展与研究」页。数据源已就位：`src/data/models.ts` 是模型矩阵的唯一来源，新页面从那里取即可。
+- **② 模型进展与研究**：`/progress/` 已建立路线级进展、研究方向和可公开记录索引。后续继续把模型矩阵做成更强的对比视图，并补充论文发布后的外链。

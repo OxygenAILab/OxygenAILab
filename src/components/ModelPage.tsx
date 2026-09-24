@@ -62,6 +62,10 @@ export default function ModelPage() {
         <div className="section-head">
           <p className="eyebrow">当前规划</p>
           <h2 id="family-title">五个模型，覆盖探索与决策。</h2>
+          <p className="section-copy">每个条目只标注当前阶段；公开机制停留在方向层，实验细节等论文或发布说明确认后再补充。</p>
+          <p>
+            <a className="text-link" href="../progress/">查看进展与研究&nbsp;&rarr;</a>
+          </p>
         </div>
         <div className="card-grid">
           {modelMatrix.map((item) => (

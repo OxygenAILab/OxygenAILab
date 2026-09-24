@@ -13,6 +13,7 @@ export default defineConfig({
         model: resolve(__dirname, "model/index.html"),
         careers: resolve(__dirname, "careers/index.html"),
         research: resolve(__dirname, "research/index.html"),
+        progress: resolve(__dirname, "progress/index.html"),
         news: resolve(__dirname, "news/index.html"),
         developers: resolve(__dirname, "developers/index.html"),
         contact: resolve(__dirname, "contact/index.html"),
