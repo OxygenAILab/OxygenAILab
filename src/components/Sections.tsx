@@ -1,4 +1,5 @@
 import { siteConfig } from "../config";
+import HeroArtwork from "./HeroArtwork";
 import detailImage from "../../assets/images/detail.jpg";
 
 const capabilities = [
@@ -34,6 +35,7 @@ const steps = [
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <HeroArtwork />
       <div className="container">
         <div className="hero-inner reveal">
           <p className="eyebrow">Oxygen AI</p>
