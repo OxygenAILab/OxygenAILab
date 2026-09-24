@@ -1,6 +1,6 @@
 import { siteConfig } from "../config";
 import HeroArtwork from "./HeroArtwork";
-import detailImage from "../../assets/images/detail.jpg";
+import { DepthVisual } from "./SplitArtwork";
 
 const capabilities = [
   {
@@ -108,13 +108,7 @@ export function Model() {
             </div>
           </div>
           <figure className="split-visual">
-            <img
-              src={detailImage}
-              alt="白色玻璃与光谱折射的抽象视觉，表达模型架构中的动态认知"
-              width={1280}
-              height={720}
-              loading="lazy"
-            />
+            <DepthVisual />
           </figure>
         </div>
         <div className="card-grid reveal">

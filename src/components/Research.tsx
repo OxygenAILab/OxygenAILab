@@ -1,4 +1,4 @@
-import detailImage from "../../assets/images/detail.jpg";
+import { ContinuityVisual } from "./SplitArtwork";
 
 const directions = [
   {
@@ -66,13 +66,7 @@ export default function Research() {
             </p>
           </div>
           <figure className="split-visual">
-            <img
-              src={detailImage}
-              alt="白色玻璃与光谱折射的抽象视觉，表达研究方法中的层层验证"
-              width={1280}
-              height={800}
-              loading="lazy"
-            />
+            <ContinuityVisual />
           </figure>
         </div>
       </section>

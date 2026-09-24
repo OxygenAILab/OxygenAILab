@@ -1,6 +1,6 @@
 import { siteConfig } from "../config";
 import { modelMatrix } from "../data/models";
-import detailImage from "../../assets/images/detail.jpg";
+import { InternalVisual } from "./SplitArtwork";
 
 const tbmPillars = [
   {
@@ -127,13 +127,7 @@ export default function ModelPage() {
             </p>
           </div>
           <figure className="split-visual">
-            <img
-              src={detailImage}
-              alt="白色玻璃与光谱折射的抽象视觉，表达模型架构中的动态认知"
-              width={1280}
-              height={800}
-              loading="lazy"
-            />
+            <InternalVisual />
           </figure>
         </div>
       </section>
