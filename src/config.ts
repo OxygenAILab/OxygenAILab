@@ -3,6 +3,8 @@ export const siteConfig = {
   productUrl: "https://prima.oxygenai.top/",
   betaUrl: "https://prima.oxygenai.top/beta/",
   contactEmail: "contact@oxygenai.top",
+  labEmail: "Lab@oxygenai.top",
+  hrEmail: "hr001@oxygenai.top",
   model: {
     name: "OxygenDCM N1",
     parameters: "35B MoE",

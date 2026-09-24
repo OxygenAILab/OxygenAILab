@@ -8,12 +8,12 @@ const channels = [
   },
   {
     title: "实验室面试",
-    email: "Lab@oxygenai.top",
+    email: siteConfig.labEmail,
     copy: "研究与技术方向，请附简历与项目介绍。",
   },
   {
     title: "加入源川氧合",
-    email: "hr001@oxygenai.top",
+    email: siteConfig.hrEmail,
     copy: "运营、市场与合作方向。",
   },
 ];

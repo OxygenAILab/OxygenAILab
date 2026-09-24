@@ -4,8 +4,8 @@ import logoImage from "../../assets/images/logo.png";
 function Announce() {
   return (
     <div className="announce">
-      <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
-        Prima Agent 正在开放 Beta 调研 →
+      <a href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">
+        Prima Beta 调研进行中，问卷约需 5 分钟 →
       </a>
     </div>
   );
@@ -48,6 +48,7 @@ export function Footer({ active = "home" }: { active?: "home" | "about" | "model
             <img className="footer-logo" src={logoImage} alt="" width={28} height={28} />
             {siteConfig.brand}
           </p>
+          <p className="footer-slogan">星火灵现，构于基元。</p>
           <p>Prima 与 OxygenDCM N1 的母品牌。</p>
         </div>
         <nav aria-label="网站导航">

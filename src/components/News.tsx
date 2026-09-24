@@ -1,10 +1,12 @@
+import { siteConfig } from "../config";
+
 const items = [
   {
     date: "2026-09",
     tag: "产品",
     title: "Prima Beta 调研持续进行中",
     copy: "我们正在邀请真实用户参与 Prima 前期调研，用约 5 分钟描述你的使用习惯、痛点和服务期待。入选用户有机会提前体验产品。",
-    link: { label: "参与调研", href: "https://prima.oxygenai.top/beta/", external: true },
+    link: { label: "参与调研", href: siteConfig.betaUrl, external: true },
   },
   {
     date: "2026-09",
@@ -18,7 +20,7 @@ const items = [
     tag: "品牌",
     title: "Oxygen AI 官网上线",
     copy: "以「让推理、记忆与执行长在一起」为主题的新官网正式上线，同期上线 Prima 官网与 Beta 申请通道。",
-    link: { label: "访问 Prima 官网", href: "https://prima.oxygenai.top/", external: true },
+    link: { label: "访问 Prima 官网", href: siteConfig.productUrl, external: true },
   },
 ];
 

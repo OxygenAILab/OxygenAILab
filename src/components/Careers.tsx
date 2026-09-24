@@ -3,14 +3,14 @@ import { siteConfig } from "../config";
 const channels = [
   {
     title: "申请实验室面试",
-    email: "Lab@oxygenai.top",
+    email: siteConfig.labEmail,
     tone: "peri",
     tag: "研究与技术",
     copy: "面向模型架构、Agent 系统与工程方向。请附上简历或 GitHub，并简述你最近做过的最有挑战的一个项目；如果读过我们的页面，也欢迎谈谈你的看法。",
   },
   {
     title: "加入源川氧合",
-    email: "hr001@oxygenai.top",
+    email: siteConfig.hrEmail,
     tone: "mint",
     tag: "团队运营与商务",
     copy: "面向运营、市场与合作方向。请附上简历与自我介绍，说明你希望参与的方向；我们会结合当前团队需求安排沟通。",
@@ -81,7 +81,7 @@ export default function Careers() {
         <div className="contact-panel">
           <div>
             <h2 id="careers-cta-title">不确定自己适合哪个入口？</h2>
-            <p>直接写信到 Lab@oxygenai.top，简单介绍你自己。如果这边有更合适的方向，我们会帮你转接。</p>
+            <p>直接写信到 {siteConfig.labEmail}，简单介绍你自己。如果这边有更合适的方向，我们会帮你转接。</p>
           </div>
           <a className="button primary" href={`mailto:${siteConfig.contactEmail}`}>
             给我们写信

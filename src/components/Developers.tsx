@@ -1,7 +1,9 @@
+import { siteConfig } from "../config";
+
 const steps = [
   {
     title: "01 · 表达兴趣",
-    copy: "写信到 contact@oxygenai.top，简单介绍你的团队与使用场景。我们目前在邀约制阶段，还没有开放自助注册。",
+    copy: `写信到 ${siteConfig.contactEmail}，简单介绍你的团队与使用场景。我们目前在邀约制阶段，还没有开放自助注册。`,
   },
   {
     title: "02 · 场景对齐",
@@ -75,7 +77,7 @@ export default function Developers() {
             <h2 id="dev-cta-title">准备好开始了吗？</h2>
             <p>写信介绍你的团队与场景，我们会尽快回复。</p>
           </div>
-          <a className="button primary" href="mailto:contact@oxygenai.top">联系我们</a>
+          <a className="button primary" href={`mailto:${siteConfig.contactEmail}`}>联系我们</a>
         </div>
       </section>
     </main>

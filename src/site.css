@@ -636,6 +636,12 @@ a:focus-visible {
   color: rgba(255, 255, 255, .55);
   line-height: 1.7;
 }
+.footer-grid > div:first-child .footer-slogan {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, .92);
+  margin-bottom: 8px;
+}
 .site-footer nav {
   display: grid;
   gap: 10px;

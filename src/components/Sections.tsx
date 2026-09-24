@@ -37,9 +37,9 @@ export function Hero() {
       <div className="container">
         <div className="hero-inner reveal">
           <p className="eyebrow">Oxygen AI</p>
-          <h1 id="hero-title">让推理、记忆与执行长在一起。</h1>
+          <h1 id="hero-title">星火灵现，构于基元。</h1>
           <p className="hero-sub">
-            Prima 是我们面向真实长任务的 Agent 产品方向。OxygenDCM N1 是规划中的 35B MoE 模型，围绕内生动态认知架构组织注意力、记忆与执行。
+            Prima 是面向真实长任务的 AI Agent，OxygenDCM N1 是规划中的模型。我们只在真实任务里验证能力，再把验证过的方法沉淀进模型。
           </p>
           <div className="hero-actions">
             <a className="button primary" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
