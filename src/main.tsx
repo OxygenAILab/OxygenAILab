@@ -13,6 +13,7 @@ import ModelPage from "./components/ModelPage";
 import Careers from "./components/Careers";
 import Research from "./components/Research";
 import Progress from "./components/Progress";
+import Pricing from "./components/Pricing";
 import News from "./components/News";
 import Developers from "./components/Developers";
 import Contact from "./components/Contact";
@@ -32,6 +33,7 @@ const pageMap: Partial<Record<PageKey, React.ReactNode>> = {
   careers: <Careers />,
   research: <Research />,
   progress: <Progress />,
+  pricing: <Pricing />,
   news: <News />,
   developers: <Developers />,
   contact: <Contact />,

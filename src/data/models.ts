@@ -17,7 +17,10 @@ export type ModelRouteId = "generation" | "internal" | "decision";
 export type ModelRoute = {
   id: ModelRouteId;
   label: string;
+  basis: string;
   summary: string;
+  objective: string;
+  boundary: string;
 };
 
 export type ModelEntry = {
@@ -33,18 +36,27 @@ export type ModelEntry = {
 export const modelRoutes: ModelRoute[] = [
   {
     id: "generation",
-    label: "序列生成",
+    label: "TBM · 序列生成",
+    basis: "思维气泡模型",
     summary: "在生成过程里并行探索，用独立路径检查结论是否站得住。",
+    objective: "在相近算力预算下改善准确率与延迟的平衡。",
+    boundary: "阶段划分、控制机制和完整评测暂不公开。",
   },
   {
     id: "internal",
-    label: "内部动力学",
+    label: "DCM · 内部动力学",
+    basis: "内生动态认知模型",
     summary: "把任务难度判断、探索深度和收敛控制放进模型内部。",
+    objective: "让算力消耗随任务复杂度和认知深度自适应变化。",
+    boundary: "状态演化、路由与早退机制暂不公开。",
   },
   {
     id: "decision",
-    label: "校准决策",
+    label: "CDM · 校准决策",
+    basis: "概率校准模型",
     summary: "为需要明确判断的场景输出可解释的置信度与边界。",
+    objective: "区分模型的真实正确率与主观笃定程度，并用选择性决策衡量风险。",
+    boundary: "输出契约、训练策略和业务指标口径暂不公开。",
   },
 ];
 

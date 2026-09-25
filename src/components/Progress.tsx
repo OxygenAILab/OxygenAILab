@@ -50,7 +50,7 @@ export default function Progress() {
       <section id="model-progress" className="container about-section" aria-labelledby="model-progress-title">
         <div className="section-head">
           <p className="eyebrow">模型进展</p>
-          <h2 id="model-progress-title">三条路线，五个模型。</h2>
+          <h2 id="model-progress-title">三条基础路线，五个模型。</h2>
         </div>
         <div className="progress-route-grid">
           {modelRoutes.map((route) => {
@@ -60,6 +60,7 @@ export default function Progress() {
               <article className="progress-route-card" key={route.id}>
                 <div className="progress-route-head">
                   <h3>{route.label}</h3>
+                  <p className="progress-route-basis">{route.basis}</p>
                   <p>{route.summary}</p>
                 </div>
                 <ul className="progress-model-list">
@@ -73,6 +74,16 @@ export default function Progress() {
                     </li>
                   ))}
                 </ul>
+                <div className="progress-research">
+                  <p>
+                    <span>研究目标</span>
+                    {route.objective}
+                  </p>
+                  <p>
+                    <span>公开边界</span>
+                    {route.boundary}
+                  </p>
+                </div>
               </article>
             );
           })}

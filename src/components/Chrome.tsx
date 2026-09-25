@@ -9,6 +9,7 @@ export type PageKey =
   | "careers"
   | "research"
   | "progress"
+  | "pricing"
   | "news"
   | "developers"
   | "contact";
@@ -19,6 +20,7 @@ const NAV: { label: string; anchor: string; page?: PageKey }[] = [
   { label: "模型", anchor: "model", page: "model" },
   { label: "研究", anchor: "research", page: "research" },
   { label: "进展", anchor: "progress", page: "progress" },
+  { label: "定价", anchor: "pricing", page: "pricing" },
   { label: "开发者", anchor: "developers", page: "developers" },
   { label: "动态", anchor: "news", page: "news" },
   { label: "关于", anchor: "about", page: "about" },
@@ -132,6 +134,7 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
           <a href={active === "home" ? "./model/" : "../model/"}>模型</a>
           <a href={active === "home" ? "./research/" : "../research/"}>研究</a>
           <a href={active === "home" ? "./progress/" : "../progress/"}>进展</a>
+          <a href={active === "home" ? "./pricing/" : "../pricing/"}>定价</a>
           <a href={active === "home" ? "./developers/" : "../developers/"}>开发者</a>
           <a href={active === "home" ? "./news/" : "../news/"}>动态</a>
           <a href={active === "home" ? "./about/" : "../about/"}>关于</a>

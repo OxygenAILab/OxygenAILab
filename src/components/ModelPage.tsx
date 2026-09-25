@@ -65,6 +65,7 @@ export default function ModelPage() {
           <p className="section-copy">每个条目只标注当前阶段；公开机制停留在方向层，实验细节等论文或发布说明确认后再补充。</p>
           <p>
             <a className="text-link" href="../progress/">查看进展与研究&nbsp;&rarr;</a>
+            <a className="text-link pricing-link" href="../pricing/">查看定价&nbsp;&rarr;</a>
           </p>
         </div>
         <div className="card-grid">
