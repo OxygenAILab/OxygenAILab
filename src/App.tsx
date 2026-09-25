@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Footer, Header } from "./components/Chrome";
 import PageMotion from "./components/Motion";
+import RegionBanner from "./components/RegionBanner";
 import { About, Approach, Hero, Model, Products } from "./components/Sections";
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
   return (
     <>
       <a className="skip-link" href="#main">跳到主要内容</a>
+      <RegionBanner />
       <PageMotion />
       <Header />
       <main id="main">
