@@ -1,5 +1,6 @@
 import { siteConfig } from "../config";
-import detailImage from "../../assets/images/detail.jpg";
+import HeroArtwork from "./HeroArtwork";
+import { DepthVisual } from "./SplitArtwork";
 
 const capabilities = [
   {
@@ -27,19 +28,20 @@ const steps = [
   },
   {
     title: "03 · 模型内化",
-    copy: "把已验证的动态推理与记忆策略沉淀进 OxygenDCM 的架构规划。",
+    copy: "验证出结论之后，再看哪些该写进 OxygenDCM 的架构规划。",
   },
 ];
 
 export function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <HeroArtwork />
       <div className="container">
         <div className="hero-inner reveal">
           <p className="eyebrow">Oxygen AI</p>
-          <h1 id="hero-title">让推理、记忆与执行长在一起。</h1>
+          <h1 id="hero-title">星火灵现，构于基元。</h1>
           <p className="hero-sub">
-            Prima 是我们面向真实长任务的 Agent 产品方向。OxygenDCM N1 是规划中的 35B MoE 模型，围绕内生动态认知架构组织注意力、记忆与执行。
+            Prima 是面向真实长任务的 AI Agent，OxygenDCM N1 是规划中的模型。模型里该放什么，由产品在一线跑出来的结论决定。
           </p>
           <div className="hero-actions">
             <a className="button primary" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
@@ -59,9 +61,9 @@ export function Products() {
       <div className="container">
         <div className="section-head reveal">
           <p className="eyebrow">当前矩阵</p>
-          <h2 id="products-title">从产品场景长出模型能力</h2>
+          <h2 id="products-title">模型能力来自产品的一线结论</h2>
           <p className="section-copy">
-            Oxygen AI 还在早期阶段。我们不急着把所有方向写成产品，而是先在真实长任务中验证哪些能力真正减少返工。
+            Oxygen AI 还在早期阶段。我们暂时不铺产品线，先把「哪些能力真的能减少返工」这件事弄明白。
           </p>
         </div>
         <div className="card-grid reveal">
@@ -74,7 +76,7 @@ export function Products() {
             </a>
           </article>
           <article className="card">
-            <p className="tag peri">规划中</p>
+            <p className="tag gray">规划中</p>
             <h3>{siteConfig.model.name}</h3>
             <p>35B MoE 模型规划，目标是把任务复杂度感知、动态认知深度和长期协作状态放进同一套模型架构。</p>
             <a className="text-link" href="#model">了解规划方向&nbsp;&rarr;</a>
@@ -87,7 +89,7 @@ export function Products() {
 
 export function Model() {
   return (
-    <section className="section dark" id="model" aria-labelledby="model-title">
+    <section className="section alt" id="model" aria-labelledby="model-title">
       <div className="container">
         <div className="split reveal">
           <div className="split-copy">
@@ -97,7 +99,7 @@ export function Model() {
               {siteConfig.model.parameters} · {siteConfig.model.architecture}
             </p>
             <p>
-              OxygenDCM N1 不是把“多想几步”作为外挂提示，而是希望在模型层感知任务复杂度，并在快答、深想、记忆检索和执行校验之间动态切换。
+              「多想几步」在别处通常靠提示词外挂。OxygenDCM N1 想做的是把它放进模型本身：自己判断任务有多难，再决定要想多深。
             </p>
             <div className="spec-grid">
               <div><span>规模</span><strong>{siteConfig.model.parameters}</strong></div>
@@ -106,13 +108,7 @@ export function Model() {
             </div>
           </div>
           <figure className="split-visual">
-            <img
-              src={detailImage}
-              alt="白色玻璃与光谱折射的抽象视觉，表达模型架构中的动态认知"
-              width={1280}
-              height={720}
-              loading="lazy"
-            />
+            <DepthVisual />
           </figure>
         </div>
         <div className="card-grid reveal">
@@ -130,11 +126,11 @@ export function Model() {
 
 export function Approach() {
   return (
-    <section className="section alt" id="approach" aria-labelledby="approach-title">
+    <section className="section" id="approach" aria-labelledby="approach-title">
       <div className="container">
         <div className="section-head reveal">
           <p className="eyebrow">方法</p>
-          <h2 id="approach-title">先减少返工，再扩大能力</h2>
+          <h2 id="approach-title">眼下的重点是少返工</h2>
         </div>
         <div className="timeline">
           {steps.map((step) => (
@@ -154,9 +150,9 @@ export function About() {
     <section className="cta-section" id="about" aria-labelledby="about-title">
       <div className="container reveal" style={{textAlign: "center"}}>
         <p className="eyebrow">关于 Oxygen AI</p>
-        <h2 id="about-title">我们在早期，所以更重视真实反馈。</h2>
+        <h2 id="about-title">第一版还没定型，你的反馈会改它。</h2>
         <p className="section-copy">
-          Oxygen AI 目前专注少数方向：Prima、用户共创，以及 OxygenDCM 的架构研究。我们不会把规划中的能力描述成已经可用。
+          Oxygen AI 目前专注少数方向：Prima、用户共创，以及 OxygenDCM 的架构研究。哪些能用、哪些还在规划，页面上都标了。
         </p>
         <div className="hero-actions">
           <a className="button primary" href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">

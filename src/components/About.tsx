@@ -3,15 +3,15 @@ import { siteConfig } from "../config";
 const beliefs = [
   {
     title: "产品先验证",
-    copy: "先用 Prima 在真实工作流中验证哪些认知能力有价值，再把稳定结论带入模型架构研究。",
+    copy: "Prima 先在一线跑。跑出来的稳定结论，才带进模型架构研究。",
   },
   {
     title: "模型不炫技",
-    copy: "OxygenDCM N1 的重点是复杂度感知、分层记忆和执行一致性，不是把参数规模当作体验承诺。",
+    copy: "OxygenDCM N1 看的是复杂度感知、分层记忆和执行一致性。参数规模大不大，跟好不好用是两件事。",
   },
   {
     title: "边界必须清楚",
-    copy: "探索中的架构、未上线功能和用户数据边界都会明确标注，不做不可验证的宣传。",
+    copy: "探索中的架构、未上线功能，以及用户数据的使用范围，都会在页面上标清楚。",
   },
 ];
 
@@ -28,7 +28,7 @@ export default function About() {
     <main id="main" className="about-page">
       <section className="container page-hero" aria-labelledby="about-page-title">
         <p className="eyebrow">关于 Oxygen AI</p>
-        <h1 id="about-page-title">我们研究长任务里的连续性。</h1>
+        <h1 id="about-page-title">一支小团队，两条线。</h1>
         <p className="section-copy">
           Oxygen AI 是一个小而专注的产品与研究团队。当前工作围绕 Prima、用户共创，以及 OxygenDCM N1 的动态认知架构规划展开。
         </p>
@@ -41,7 +41,7 @@ export default function About() {
       <section className="container about-section" aria-labelledby="belief-title">
         <div className="section-head">
           <p className="eyebrow">工作原则</p>
-          <h2 id="belief-title">少承诺，多验证。</h2>
+          <h2 id="belief-title">每个结论都要能复查。</h2>
         </div>
         <div className="card-grid">
           {beliefs.map((item) => (

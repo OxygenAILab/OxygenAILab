@@ -1,71 +1,34 @@
 import { siteConfig } from "../config";
-import detailImage from "../../assets/images/detail.jpg";
+import { modelMatrix } from "../data/models";
+import { InternalVisual } from "./SplitArtwork";
 
 const tbmPillars = [
   {
     title: "并行探索",
-    copy: "同一请求在相互隔离的认知分支中并行展开，分支配额保持对称，天然引入正反视角的对抗平衡。",
+    copy: "同一个请求同时展开几条互不干扰的路径，不沿着单一线索一路推到底。",
   },
   {
     title: "对抗校验",
-    copy: "正向分支持续推进推理，负向分支专门评估后果并尝试纠偏；两者的分歧被显式保留，而不是被平均掉。",
+    copy: "让一部分分支专门去证伪结论。分歧会保留下来，不取平均。",
   },
   {
     title: "预算内收敛",
-    copy: "低冗余分支在早期被关闭，核心异议被压缩归档，最终由验证层裁决。思考强度由分词器的决策机制动态控制各阶段用时。",
+    copy: "探索有预算上限。到点就给一个能交付的结论。",
   },
 ];
 
 const cdmTraits = [
   {
-    title: "毫秒级决策",
-    copy: "输出空间收缩为封闭集合，跳过自回归解码，直接给出校准后的判断结果。",
+    title: "即时判断",
+    copy: "面向需要即时判断的场景，直接给结论，不逐字生成。",
   },
   {
     title: "诚实概率",
-    copy: "同时返回频率校准概率与主观笃定度，两者显著偏离时触发升级标记，而不是把分布集中度冒充客观正确率。",
+    copy: "同时给出客观概率与主观笃定度。两者明显不一致时会标记出来，不把自信当成正确。",
   },
   {
     title: "拒答即能力",
-    copy: "拒答与转交被纳入同一校准体系，风险-覆盖曲线是核心业务指标，而非次要统计。",
-  },
-];
-
-const family = [
-  {
-    name: "OxygenTBM Avenues",
-    series: "序列生成 · 多模态",
-    status: "研究中",
-    tone: "peri",
-    copy: "面向视觉与文本交织任务的多模态探索模型。以序列生成为基底，把并行对抗分支的结论迁移到图文理解与生成场景。",
-  },
-  {
-    name: "OxygenTBM Terrace",
-    series: "序列生成 · 文本",
-    status: "研究中",
-    tone: "mint",
-    copy: "纯文本场景的探索模型。同源架构的轻量变体，用于在低成本预算下验证各阶段配额、门控与归档策略。",
-  },
-  {
-    name: "OxygenDCM N1",
-    series: "隐状态动力学 · 35B MoE",
-    status: "规划中",
-    tone: "peri",
-    copy: "内生动态认知模型。把多路探索内化为隐空间子空间演化，把对抗批评内化为带抑制性连接的专家路由，实现 token 级的发散-对抗-收敛循环。",
-  },
-  {
-    name: "OxygenCDM T1",
-    series: "校准决策 · 文本",
-    status: "规划中",
-    tone: "mint",
-    copy: "文本决策模型。输出封闭类型与分级分数，为上游系统提供可审计的概率判断层。",
-  },
-  {
-    name: "OxygenCDM V1",
-    series: "校准决策 · 视觉",
-    status: "规划中",
-    tone: "mint",
-    copy: "视觉决策模型。将校准框架扩展到视觉判别任务，与 T1 共享决策契约与校准损失。",
+    copy: "拒答和转交跟正常回答用同一套标准。说不确定，也算一种输出。",
   },
 ];
 
@@ -89,9 +52,9 @@ export default function ModelPage() {
     <main id="main" className="about-page">
       <section className="container about-hero" aria-labelledby="model-hero-title">
         <p className="eyebrow">模型矩阵</p>
-        <h1 id="model-hero-title">两条正交的技术路线，同一套认知纪律。</h1>
+        <h1 id="model-hero-title">两条技术路线，一个判断标准。</h1>
         <p className="lead" style={{ maxWidth: "56ch" }}>
-          序列生成路线在离散 token 空间并行探索、对抗校验；隐状态路线把同样的认知循环内化为连续动力学。两者共享算力预算意识与诚实输出原则。
+          一条路线在序列生成上做并行探索与对抗校验，另一条把同样的做法搬进隐状态动力学。两者都要控制算力预算，也都要能如实说出自己有多确定。
         </p>
       </section>
 
@@ -99,9 +62,14 @@ export default function ModelPage() {
         <div className="section-head">
           <p className="eyebrow">当前规划</p>
           <h2 id="family-title">五个模型，覆盖探索与决策。</h2>
+          <p className="section-copy">每个条目只标注当前阶段；公开机制停留在方向层，实验细节等论文或发布说明确认后再补充。</p>
+          <p>
+            <a className="text-link" href="../progress/">查看进展与研究&nbsp;&rarr;</a>
+            <a className="text-link pricing-link" href="../pricing/">查看定价&nbsp;&rarr;</a>
+          </p>
         </div>
         <div className="card-grid">
-          {family.map((item) => (
+          {modelMatrix.map((item) => (
             <article className="card" key={item.name}>
               <p className={`tag ${item.tone}`}>{item.status}</p>
               <h3>{item.name}</h3>
@@ -112,13 +80,13 @@ export default function ModelPage() {
         </div>
       </section>
 
-      <section className="section dark" aria-labelledby="tbm-title">
+      <section className="section alt" aria-labelledby="tbm-title">
         <div className="container">
           <div className="section-head">
             <p className="eyebrow">序列生成路线</p>
-            <h2 id="tbm-title">让分支替你怀疑结论。</h2>
+            <h2 id="tbm-title">结论由对立的分支来怀疑。</h2>
             <p className="section-copy">
-              Avenues 与 Terrace 基于多分支并行演化、对称配额、正反对抗的生成范式：每个请求在隔离认知空间里分裂为成对的探索分支，正向分支推进推理，负向分支专门尝试推翻它。
+              Avenues 与 Terrace 走多分支并行的生成范式：每个请求同时展开成对的探索分支，一部分推进推理，一部分专门尝试推翻它。
             </p>
           </div>
           <div className="card-grid">
@@ -139,7 +107,7 @@ export default function ModelPage() {
               <p className="eyebrow">校准决策路线</p>
               <h2 id="cdm-title">不确定时，它说不知道。</h2>
               <p className="lead">
-                CDM 是专门输出诚实概率的判别式模型：以严格评分规则为主损失，用非对称惩罚约束过自信，再以约束投影保证输出合法。
+                CDM 是专门输出诚实概率的判别式模型。它要做的是把「不确定」说出来，不让自信盖过它。
               </p>
             </div>
             <div className="stack-cards">
@@ -158,19 +126,13 @@ export default function ModelPage() {
         <div className="split">
           <div className="split-copy">
             <p className="eyebrow">DCM 路线</p>
-            <h2 id="arch-title">认知循环长在模型里。</h2>
+            <h2 id="arch-title">探索和收敛都在模型内部完成。</h2>
             <p>
-              DCM 不依赖外部脚本干预。每个 token 的前向计算中，模型自发完成探索、对抗与收敛：注意力子空间演化承担发散，专家路由承担对抗，隐状态熵驱动的连续 halt 概率承担早退裁决。
+              DCM 不依赖外部脚本干预：探索、校验与收敛都发生在模型自己的计算过程里。
             </p>
           </div>
           <figure className="split-visual">
-            <img
-              src={detailImage}
-              alt="白色玻璃与光谱折射的抽象视觉，表达模型架构中的动态认知"
-              width={1280}
-              height={800}
-              loading="lazy"
-            />
+            <InternalVisual />
           </figure>
         </div>
       </section>
@@ -178,7 +140,7 @@ export default function ModelPage() {
       <section className="container about-section" aria-labelledby="roadmap-title">
         <div className="section-head">
           <p className="eyebrow">路线图</p>
-          <h2 id="roadmap-title">先验证，再设计，后训练。</h2>
+          <h2 id="roadmap-title">顺序是验证、设计、训练。</h2>
         </div>
         <div className="timeline">
           {roadmap.map((step) => (

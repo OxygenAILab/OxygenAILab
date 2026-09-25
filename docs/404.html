@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>页面没找到 · Oxygen AI</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#f7f7f5" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <style>
+      :root {
+        --bg: #f7f7f5;
+        --border: #e3e2de;
+        --ink: #16181d;
+        --ink-2: rgba(22, 24, 29, .64);
+        --ink-3: rgba(22, 24, 29, .42);
+        --brand: #0a6b60;
+        --font-display: "Lora", "Source Han Serif SC", "Noto Serif SC", "Songti SC", Georgia, serif;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.7 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+        padding: 32px;
+      }
+      main { width: min(640px, 100%); margin-inline: auto; }
+      .eyebrow { font-size: 13px; color: var(--ink-3); margin-bottom: 16px; }
+      h1 {
+        font-family: var(--font-display);
+        font-size: clamp(32px, 6vw, 52px);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: 0;
+        margin-bottom: 20px;
+      }
+      p.copy { color: var(--ink-2); max-width: 46ch; }
+      p.hint { color: var(--ink-3); font-size: .88rem; margin-top: 12px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: .95rem;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      a.primary { color: #fff; background: var(--ink); }
+      a.primary:hover { background: var(--brand); }
+      a.ghost { color: var(--ink); border: 1px solid var(--border); }
+      a.ghost:hover { border-color: rgba(22, 24, 29, .22); }
+      a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+      hr { border: 0; border-top: 1px solid var(--border); margin: 48px 0 20px; }
+      footer { color: var(--ink-3); font-size: .82rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">404</p>
+      <h1>这个页面不存在。</h1>
+      <p class="copy">
+        链接可能已经失效，或者地址里有个错别字。你可以回到首页，也可以直接看看我们在做什么。
+      </p>
+      <div class="actions">
+        <a class="button primary" href="/">回到首页</a>
+        <a class="button ghost" href="https://prima.oxygenai.top/beta/" rel="noopener">参与 Prima Beta 调研</a>
+      </div>
+      <p class="hint">如果这个地址本该存在，欢迎写信告诉我们：contact@oxygenai.top</p>
+      <hr />
+      <footer>
+        <p>Oxygen AI · 星火灵现，构于基元。</p>
+      </footer>
+    </main>
+  </body>
+</html>
