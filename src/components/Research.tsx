@@ -85,6 +85,17 @@ export default function Research() {
           ))}
         </div>
       </section>
+
+      <section className="container about-section" aria-labelledby="research-progress-title">
+        <div className="section-head">
+          <p className="eyebrow">当前进展</p>
+          <h2 id="research-progress-title">模型状态和研究记录单独归档。</h2>
+          <p className="section-copy">研究方向说明为什么做；进展页说明每条模型线现在走到哪里，以及哪些记录可以公开。</p>
+          <p>
+            <a className="text-link" href="../progress/">查看模型进展与研究&nbsp;&rarr;</a>
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
