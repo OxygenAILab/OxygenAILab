@@ -124,8 +124,8 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
             <img className="footer-logo" src={logoImage} alt="" width={28} height={28} />
             {siteConfig.brand}
           </p>
-          <p className="footer-slogan">星火灵现，构于基元。</p>
-          <p>Prima 与 OxygenDCM N1 的母品牌。</p>
+          <p className="footer-slogan">氧合万物。</p>
+          <p>Prima 的研究底座，也是长任务认知架构的实验室。</p>
         </div>
         <nav aria-label="网站导航">
           <a href={active === "home" ? "#products" : "../#products"}>产品</a>

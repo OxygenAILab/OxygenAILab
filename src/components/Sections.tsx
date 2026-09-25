@@ -39,9 +39,9 @@ export function Hero() {
       <div className="container">
         <div className="hero-inner reveal">
           <p className="eyebrow">Oxygen AI</p>
-          <h1 id="hero-title">星火灵现，构于基元。</h1>
+          <h1 id="hero-title">氧合万物。</h1>
           <p className="hero-sub">
-            Prima 是面向真实长任务的 AI Agent，OxygenDCM N1 是规划中的模型。模型里该放什么，由产品在一线跑出来的结论决定。
+            把长任务拆回可验证的基元：Prima 在一线校准体验，OxygenDCM 在底层重塑推理、记忆与执行的秩序。
           </p>
           <div className="hero-actions">
             <a className="button primary" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
@@ -61,7 +61,7 @@ export function Products() {
       <div className="container">
         <div className="section-head reveal">
           <p className="eyebrow">当前矩阵</p>
-          <h2 id="products-title">模型能力来自产品的一线结论</h2>
+          <h2 id="products-title">产品与模型，共用一条证据链</h2>
           <p className="section-copy">
             Oxygen AI 还在早期阶段。我们暂时不铺产品线，先把「哪些能力真的能减少返工」这件事弄明白。
           </p>
@@ -99,7 +99,7 @@ export function Model() {
               {siteConfig.model.parameters} · {siteConfig.model.architecture}
             </p>
             <p>
-              「多想几步」在别处通常靠提示词外挂。OxygenDCM N1 想做的是把它放进模型本身：自己判断任务有多难，再决定要想多深。
+              「多想几步」不该靠外挂。我们让它回到模型内部：识别任务复杂度，再决定探索的深度、记忆的层次与收敛的时机。
             </p>
             <div className="spec-grid">
               <div><span>规模</span><strong>{siteConfig.model.parameters}</strong></div>
@@ -130,7 +130,7 @@ export function Approach() {
       <div className="container">
         <div className="section-head reveal">
           <p className="eyebrow">方法</p>
-          <h2 id="approach-title">眼下的重点是少返工</h2>
+          <h2 id="approach-title">让长任务回到秩序</h2>
         </div>
         <div className="timeline">
           {steps.map((step) => (
@@ -150,7 +150,7 @@ export function About() {
     <section className="cta-section" id="about" aria-labelledby="about-title">
       <div className="container reveal" style={{textAlign: "center"}}>
         <p className="eyebrow">关于 Oxygen AI</p>
-        <h2 id="about-title">第一版还没定型，你的反馈会改它。</h2>
+          <h2 id="about-title">把复杂留给系统，把秩序还给你。</h2>
         <p className="section-copy">
           Oxygen AI 目前专注少数方向：Prima、用户共创，以及 OxygenDCM 的架构研究。哪些能用、哪些还在规划，页面上都标了。
         </p>

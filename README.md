@@ -32,7 +32,7 @@ Oxygen AI（`oxygenai.top`）的官网源码。React 19 + Vite 7 + TypeScript，
 
 - 母品牌固定 `Oxygen AI`（中间一个空格），产品固定 `Prima`，不写 `PrimaAgent` / `PrimalDE` / `Prima Agent`。
 - 模型 `OxygenDCM N1` 是**规划中**能力，不得写成已可用或已发布。
-- Slogan「星火灵现，构于基元。」在可见正文里最多出现两次（Hero、页脚各一次）。
+- Oxygen Slogan「氧合万物。」在可见正文里最多出现两次（Hero、页脚各一次）。Prima Slogan「星火灵现，构于基元。」只在 Prima 品牌位使用。
 
 ## 技术栈与命令
 
