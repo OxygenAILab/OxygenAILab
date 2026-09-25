@@ -1,5 +1,7 @@
 export const siteConfig = {
   brand: "Oxygen AI",
+  slogan: "氧合万物。",
+  productSlogan: "星火灵现，构于基元。",
   productUrl: "https://prima.oxygenai.top/",
   betaUrl: "https://prima.oxygenai.top/beta/",
   contactEmail: "contact@oxygenai.top",
