@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { siteConfig } from "../config";
 import logoImage from "../../assets/images/logo.png";
-import { LanguageSwitch, useI18n } from "../i18n";
+import { useI18n } from "../i18n";
 
 export type PageKey =
   | "home"
@@ -81,7 +81,6 @@ export function Header({ active = "home" }: { active?: PageKey }) {
         <a className="button primary compact header-cta" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
           {t("cta.enterPrima")}
         </a>
-        <LanguageSwitch />
         <button
           type="button"
           className="nav-toggle"
