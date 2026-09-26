@@ -12,7 +12,9 @@ export type PageKey =
   | "progress"
   | "news"
   | "developers"
-  | "contact";
+  | "contact"
+  | "privacy"
+  | "terms";
 
 // 导航项集中一处，桌面导航与移动抽屉共用，避免两份链接各写一遍
 const NAV: Array<{ key: "nav.products" | "nav.model" | "nav.research" | "nav.progress" | "nav.developers" | "nav.news" | "nav.about" | "nav.careers"; anchor: string; page?: PageKey }> = [
@@ -73,7 +75,11 @@ export function Header({ active = "home" }: { active?: PageKey }) {
         </a>
         <nav className="site-nav" aria-label={locale === "zh" ? "主导航" : "Main navigation"}>
           {NAV.map((item) => (
-            <a key={item.key} href={navHref(item, active)}>
+            <a
+              key={item.key}
+              href={navHref(item, active)}
+              aria-current={item.page === active ? "page" : undefined}
+            >
               {t(item.key)}
             </a>
           ))}
@@ -142,6 +148,8 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
           <a href={active === "home" ? "./news/" : "../news/"}>{t("nav.news")}</a>
           <a href={active === "home" ? "./about/" : "../about/"}>{t("nav.about")}</a>
           <a href={active === "home" ? "./careers/" : "../careers/"}>{t("nav.careers")}</a>
+          <a href={active === "home" ? "./privacy/" : "../privacy/"}>{locale === "zh" ? "隐私" : "Privacy"}</a>
+          <a href={active === "home" ? "./terms/" : "../terms/"}>{locale === "zh" ? "条款" : "Terms"}</a>
         </nav>
         <nav aria-label={locale === "zh" ? "Prima 导航" : "Prima navigation"}>
           <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Prima 官网" : "Prima website"}</a>
@@ -152,6 +160,17 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
       <div className="container footer-bottom">
         <p>&copy; 2026 Oxygen AI</p>
         <p>{t("footer.rights")}</p>
+        <button
+          type="button"
+          className="back-to-top"
+          onClick={() => {
+            const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+          }}
+          aria-label={locale === "zh" ? "返回顶部" : "Back to top"}
+        >
+          ↑
+        </button>
       </div>
     </footer>
   );
