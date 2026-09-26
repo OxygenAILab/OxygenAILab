@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { siteConfig } from "../config";
 import logoImage from "../../assets/images/logo.png";
+import { LanguageSwitch, useI18n } from "../i18n";
 
 export type PageKey =
   | "home"
@@ -14,18 +15,18 @@ export type PageKey =
   | "contact";
 
 // 导航项集中一处，桌面导航与移动抽屉共用，避免两份链接各写一遍
-const NAV: { label: string; anchor: string; page?: PageKey }[] = [
-  { label: "产品", anchor: "products" },
-  { label: "模型", anchor: "model", page: "model" },
-  { label: "研究", anchor: "research", page: "research" },
-  { label: "进展", anchor: "progress", page: "progress" },
-  { label: "开发者", anchor: "developers", page: "developers" },
-  { label: "动态", anchor: "news", page: "news" },
-  { label: "关于", anchor: "about", page: "about" },
-  { label: "加入我们", anchor: "careers", page: "careers" },
+const NAV: Array<{ key: "nav.products" | "nav.model" | "nav.research" | "nav.progress" | "nav.developers" | "nav.news" | "nav.about" | "nav.careers"; anchor: string; page?: PageKey }> = [
+  { key: "nav.products", anchor: "products" },
+  { key: "nav.model", anchor: "model", page: "model" },
+  { key: "nav.research", anchor: "research", page: "research" },
+  { key: "nav.progress", anchor: "progress", page: "progress" },
+  { key: "nav.developers", anchor: "developers", page: "developers" },
+  { key: "nav.news", anchor: "news", page: "news" },
+  { key: "nav.about", anchor: "about", page: "about" },
+  { key: "nav.careers", anchor: "careers", page: "careers" },
 ];
 
-function navHref(item: (typeof NAV)[number], active: PageKey) {
+function navHref(item: { anchor: string; page?: PageKey }, active: PageKey) {
   if (!item.page) return active === "home" ? `#${item.anchor}` : `../#${item.anchor}`;
   if (active === "home") return `./${item.anchor}/`;
   if (active === item.page) return "#top";
@@ -33,10 +34,12 @@ function navHref(item: (typeof NAV)[number], active: PageKey) {
 }
 
 function Announce() {
+  const { t } = useI18n();
+
   return (
     <div className="announce">
       <a href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">
-        Prima Beta 调研进行中，问卷约需 5 分钟 →
+        {t("announce.beta")}
       </a>
     </div>
   );
@@ -44,6 +47,7 @@ function Announce() {
 
 export function Header({ active = "home" }: { active?: PageKey }) {
   const [open, setOpen] = useState(false);
+  const { locale, t } = useI18n();
 
   useEffect(() => {
     if (!open) return;
@@ -63,24 +67,25 @@ export function Header({ active = "home" }: { active?: PageKey }) {
       <Announce />
       <header className="site-header" id="top">
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label="Oxygen AI 首页">
+        <a className="brand" href="#top" aria-label={locale === "zh" ? "Oxygen AI 首页" : "Oxygen AI home"}>
           <img className="brand-mark" src={logoImage} alt="" width={30} height={30} />
           <span>{siteConfig.brand}</span>
         </a>
-        <nav className="site-nav" aria-label="主导航">
+        <nav className="site-nav" aria-label={locale === "zh" ? "主导航" : "Main navigation"}>
           {NAV.map((item) => (
-            <a key={item.label} href={navHref(item, active)}>
-              {item.label}
+            <a key={item.key} href={navHref(item, active)}>
+              {t(item.key)}
             </a>
           ))}
         </nav>
         <a className="button primary compact header-cta" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
-          进入 Prima
+          {t("cta.enterPrima")}
         </a>
+        <LanguageSwitch />
         <button
           type="button"
           className="nav-toggle"
-          aria-label={open ? "关闭菜单" : "打开菜单"}
+          aria-label={open ? (locale === "zh" ? "关闭菜单" : "Close menu") : (locale === "zh" ? "打开菜单" : "Open menu")}
           aria-expanded={open}
           aria-controls="site-drawer"
           onClick={() => setOpen((value) => !value)}
@@ -93,10 +98,10 @@ export function Header({ active = "home" }: { active?: PageKey }) {
       </header>
       <div id="site-drawer" className={open ? "nav-drawer open" : "nav-drawer"}>
         <div className="container">
-          <nav aria-label="移动导航">
+          <nav aria-label={locale === "zh" ? "移动导航" : "Mobile navigation"}>
             {NAV.map((item) => (
-              <a key={item.label} className="nav-link" href={navHref(item, active)} onClick={() => setOpen(false)}>
-                {item.label}
+              <a key={item.key} className="nav-link" href={navHref(item, active)} onClick={() => setOpen(false)}>
+                {t(item.key)}
               </a>
             ))}
           </nav>
@@ -107,7 +112,7 @@ export function Header({ active = "home" }: { active?: PageKey }) {
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
           >
-            进入 Prima
+            {t("cta.enterPrima")}
           </a>
         </div>
       </div>
@@ -116,6 +121,8 @@ export function Header({ active = "home" }: { active?: PageKey }) {
 }
 
 export function Footer({ active = "home" }: { active?: PageKey }) {
+  const { locale, t } = useI18n();
+
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -124,28 +131,28 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
             <img className="footer-logo" src={logoImage} alt="" width={28} height={28} />
             {siteConfig.brand}
           </p>
-          <p className="footer-slogan">氧合万物。</p>
-          <p>Prima 的研究底座，也是长任务认知架构的实验室。</p>
+          <p className="footer-slogan">{t("oxygen.slogan")}</p>
+          <p>{t("footer.researchBase")}</p>
         </div>
-        <nav aria-label="网站导航">
-          <a href={active === "home" ? "#products" : "../#products"}>产品</a>
-          <a href={active === "home" ? "./model/" : "../model/"}>模型</a>
-          <a href={active === "home" ? "./research/" : "../research/"}>研究</a>
-          <a href={active === "home" ? "./progress/" : "../progress/"}>进展</a>
-          <a href={active === "home" ? "./developers/" : "../developers/"}>开发者</a>
-          <a href={active === "home" ? "./news/" : "../news/"}>动态</a>
-          <a href={active === "home" ? "./about/" : "../about/"}>关于</a>
-          <a href={active === "home" ? "./careers/" : "../careers/"}>加入我们</a>
+        <nav aria-label={locale === "zh" ? "网站导航" : "Site navigation"}>
+          <a href={active === "home" ? "#products" : "../#products"}>{t("nav.products")}</a>
+          <a href={active === "home" ? "./model/" : "../model/"}>{t("nav.model")}</a>
+          <a href={active === "home" ? "./research/" : "../research/"}>{t("nav.research")}</a>
+          <a href={active === "home" ? "./progress/" : "../progress/"}>{t("nav.progress")}</a>
+          <a href={active === "home" ? "./developers/" : "../developers/"}>{t("nav.developers")}</a>
+          <a href={active === "home" ? "./news/" : "../news/"}>{t("nav.news")}</a>
+          <a href={active === "home" ? "./about/" : "../about/"}>{t("nav.about")}</a>
+          <a href={active === "home" ? "./careers/" : "../careers/"}>{t("nav.careers")}</a>
         </nav>
-        <nav aria-label="Prima 导航">
-          <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">Prima 官网</a>
-          <a href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">Beta 申请</a>
+        <nav aria-label={locale === "zh" ? "Prima 导航" : "Prima navigation"}>
+          <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Prima 官网" : "Prima website"}</a>
+          <a href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Beta 申请" : "Beta application"}</a>
           <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
         </nav>
       </div>
       <div className="container footer-bottom">
         <p>&copy; 2026 Oxygen AI</p>
-        <p>产品仍处早期打磨阶段，模型能力以最终发布说明为准。</p>
+        <p>{t("footer.rights")}</p>
       </div>
     </footer>
   );

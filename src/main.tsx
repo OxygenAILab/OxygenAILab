@@ -8,6 +8,7 @@ import "@fontsource/lora/600.css";
 import App from "./App";
 import PageApp from "./PageApp";
 import type { PageKey } from "./components/Chrome";
+import { I18nProvider } from "./i18n";
 import About from "./components/About";
 import ModelPage from "./components/ModelPage";
 import Careers from "./components/Careers";
@@ -39,6 +40,8 @@ const pageMap: Partial<Record<PageKey, React.ReactNode>> = {
 
 createRoot(rootElement).render(
   <StrictMode>
-    {pageId === "home" ? <App /> : <PageApp active={pageId}>{pageMap[pageId] ?? <App />}</PageApp>}
+    <I18nProvider>
+      {pageId === "home" ? <App /> : <PageApp active={pageId}>{pageMap[pageId] ?? <App />}</PageApp>}
+    </I18nProvider>
   </StrictMode>,
 );
