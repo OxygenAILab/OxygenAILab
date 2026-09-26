@@ -17,6 +17,8 @@ import Progress from "./components/Progress";
 import News from "./components/News";
 import Developers from "./components/Developers";
 import Contact from "./components/Contact";
+import Privacy from "./components/Privacy";
+import Terms from "./components/Terms";
 import "./site.css";
 
 const rootElement = document.getElementById("root");
@@ -36,6 +38,8 @@ const pageMap: Partial<Record<PageKey, React.ReactNode>> = {
   news: <News />,
   developers: <Developers />,
   contact: <Contact />,
+  privacy: <Privacy />,
+  terms: <Terms />,
 };
 
 createRoot(rootElement).render(
