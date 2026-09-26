@@ -1,10 +1,12 @@
 import { useEffect } from "react";
+import { useI18n } from "./i18n";
 import { Footer, Header } from "./components/Chrome";
 import PageMotion from "./components/Motion";
 import RegionBanner from "./components/RegionBanner";
 import { About, Approach, Hero, Model, Products } from "./components/Sections";
 
 export default function App() {
+  const { locale } = useI18n();
   useEffect(() => {
     const { hash } = window.location;
     if (hash) {
@@ -24,7 +26,7 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#main">跳到主要内容</a>
+      <a className="skip-link" href="#main">{locale === "zh" ? "跳到主要内容" : "Skip to content"}</a>
       <RegionBanner />
       <PageMotion />
       <Header />

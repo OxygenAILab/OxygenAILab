@@ -20,7 +20,7 @@
   --container: min(1200px, calc(100vw - 48px));
   --font-display: "Lora", "Source Han Serif SC", "Noto Serif SC", "Songti SC", Georgia, serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Source Han Sans CN",
-    "PingFang SC", "Segoe UI", "Noto Sans SC", sans-serif;
+    "PingFang SC", "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   --ease: cubic-bezier(.22, 1, .36, 1);
 }
 
@@ -116,6 +116,33 @@ h3 {
   color: rgba(255, 255, 255, .82);
   font-size: .82rem;
   text-align: center;
+}
+.region-banner.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+  visibility: hidden;
+}
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.language-switch button {
+  min-height: 30px;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  font-size: .8rem;
+  transition: background-color .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease);
+}
+.language-switch button.active {
+  color: var(--white);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 .region-actions {
   display: inline-flex;
@@ -1330,6 +1357,7 @@ a:focus-visible {
   }
   .accordion-panel { padding-left: 34px; }
   .region-banner { flex-wrap: wrap; gap: 8px; }
+  .language-switch { justify-content: center; width: 100%; }
   .section { padding: 88px 0; }
   .about-page { padding: 72px 0 96px; }
   .page-hero,
