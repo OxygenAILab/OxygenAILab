@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { siteConfig } from "../config";
 import logoImage from "../../assets/images/logo.png";
 import { useI18n } from "../i18n";
@@ -99,12 +99,18 @@ function Announce() {
 export function Header({ active = "home" }: { active?: PageKey }) {
   const [open, setOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const drawerRef = useRef<HTMLDivElement | null>(null);
   const { locale, t } = useI18n();
 
   useEffect(() => {
     if (!open) return;
+    drawerRef.current?.focus();
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -126,6 +132,25 @@ export function Header({ active = "home" }: { active?: PageKey }) {
   const closeAll = () => {
     setOpen(false);
     setOpenGroup(null);
+  };
+
+  // 抽屉是全屏浮层：Tab 在抽屉内循环，不落到被遮住的主内容上
+  const onDrawerKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "Tab") return;
+    const focusables = drawerRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
+    if (!focusables?.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const current = document.activeElement;
+    if (event.shiftKey) {
+      if (current === first || current === drawerRef.current) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (current === last) {
+      event.preventDefault();
+      first.focus();
+    }
   };
 
   return (
@@ -155,20 +180,26 @@ export function Header({ active = "home" }: { active?: PageKey }) {
             return (
               <div
                 key={entry.id}
-                className={inGroup ? "nav-group is-current" : "nav-group"}
+                className={`nav-group${inGroup ? " is-current" : ""}${opened ? " is-open" : ""}`}
                 onMouseEnter={() => setOpenGroup(entry.id)}
                 onMouseLeave={() => setOpenGroup(null)}
+                // 显隐只由 state 驱动，焦点进出也同步 state，
+                // 避免「聚焦就展开但 aria-expanded 还是 false」和 Escape 关不掉
+                onFocus={() => setOpenGroup(entry.id)}
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpenGroup(null);
+                }}
               >
                 <button
                   type="button"
                   aria-expanded={opened}
-                  aria-haspopup="true"
+                  aria-controls={`nav-panel-${entry.id}`}
                   onClick={() => setOpenGroup(opened ? null : entry.id)}
                 >
                   {t(entry.key)}
                   <span className="nav-caret" aria-hidden="true" />
                 </button>
-                <div className="nav-panel">
+                <div className="nav-panel" id={`nav-panel-${entry.id}`}>
                   <div className="nav-card">
                     {entry.children.map((child, index) =>
                       child.href ? (
@@ -204,6 +235,7 @@ export function Header({ active = "home" }: { active?: PageKey }) {
         <button
           type="button"
           className="nav-toggle"
+          ref={toggleRef}
           aria-label={open ? (locale === "zh" ? "关闭菜单" : "Close menu") : (locale === "zh" ? "打开菜单" : "Open menu")}
           aria-expanded={open}
           aria-controls="site-drawer"
@@ -215,7 +247,16 @@ export function Header({ active = "home" }: { active?: PageKey }) {
         </button>
       </div>
       </header>
-      <div id="site-drawer" className={open ? "nav-drawer open" : "nav-drawer"}>
+      <div
+        id="site-drawer"
+        className={open ? "nav-drawer open" : "nav-drawer"}
+        ref={drawerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={locale === "zh" ? "站点导航" : "Site navigation"}
+        tabIndex={-1}
+        onKeyDown={onDrawerKeyDown}
+      >
         <div className="container">
           <nav aria-label={locale === "zh" ? "移动导航" : "Mobile navigation"}>
             {NAV.map((entry) =>

@@ -261,7 +261,7 @@ h3 {
   translate: 0 -1px;
   transition: rotate .2s var(--ease), translate .2s var(--ease);
 }
-.nav-group:has(button[aria-expanded="true"]) .nav-caret { rotate: -135deg; translate: 0 1px; }
+.nav-group.is-open .nav-caret { rotate: -135deg; translate: 0 1px; }
 /* padding-top 充当悬停桥：指针从文字移向卡片途中不断开 */
 .nav-panel {
   position: absolute;
@@ -274,9 +274,9 @@ h3 {
   visibility: hidden;
   transition: opacity .18s var(--ease), transform .18s var(--ease), visibility .18s var(--ease);
 }
-.nav-group:hover .nav-panel,
-.nav-group:focus-within .nav-panel,
-.nav-group:has(button[aria-expanded="true"]) .nav-panel {
+/* 显隐只认 is-open 一份来源：hover / 焦点都由 JS 同步到这个 state，
+   否则会出现「聚焦已展开但 aria-expanded=false」和 Escape 关不掉 */
+.nav-group.is-open .nav-panel {
   opacity: 1;
   visibility: visible;
   transform: none;
@@ -345,6 +345,7 @@ h3 {
   overflow-y: auto;
 }
 .nav-drawer.open { display: block; }
+.nav-drawer:focus { outline: none; }
 .nav-drawer nav { display: grid; border-top: 1px solid var(--border); }
 .nav-drawer .nav-link {
   display: block;
@@ -360,7 +361,7 @@ h3 {
 }
 .nav-drawer-heading {
   padding: 16px 0 2px;
-  color: var(--ink-3);
+  color: var(--ink-2);
   font-size: .78rem;
   font-weight: 600;
 }
@@ -396,7 +397,8 @@ h3 {
   align-items: center;
   gap: 8px;
   min-height: 32px;
-  color: var(--ink-3);
+  /* 段落名是导航文字，须过 WCAG AA：--ink-3 在浅底上只有 2.6:1 */
+  color: var(--ink-2);
   font-size: .78rem;
   font-weight: 500;
   white-space: nowrap;
@@ -442,7 +444,9 @@ h3 {
     transform .2s var(--ease), box-shadow .2s var(--ease);
 }
 .button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+.nav-group > button:focus-visible,
+.nav-toggle:focus-visible {
   outline: 2px solid var(--brand);
   outline-offset: 3px;
 }
@@ -1526,7 +1530,14 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .button, .card, .site-header, .scroll-progress { transition: none; }
+  .button,
+  .card,
+  .site-header,
+  .scroll-progress,
+  .nav-panel,
+  .nav-caret,
+  .section-rail-link,
+  .section-rail-link::before { transition: none; }
   .scroll-progress { transform: scaleX(1); }
   @view-transition { navigation: none; }
 }
