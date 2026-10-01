@@ -318,11 +318,13 @@ export function Header({ active = "home" }: { active?: PageKey }) {
 
 export function Footer({ active = "home" }: { active?: PageKey }) {
   const { locale, t } = useI18n();
+  const fromPage = (path: string) => `${active === "home" ? "./" : "../"}${path}`;
+  const anchor = (id: string) => (active === "home" ? `#${id}` : `../#${id}`);
 
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
-        <div>
+        <div className="footer-brand-col">
           <p className="footer-brand">
             <img className="footer-logo" src={logoImage} alt="" width={28} height={28} />
             {siteConfig.brand}
@@ -330,23 +332,38 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
           <p className="footer-slogan">{t("oxygen.slogan")}</p>
           <p>{t("footer.researchBase")}</p>
         </div>
-        <nav aria-label={locale === "zh" ? "网站导航" : "Site navigation"}>
-          <a href={active === "home" ? "#products" : "../#products"}>{t("nav.products")}</a>
-          <a href={active === "home" ? "./model/" : "../model/"}>{t("nav.model")}</a>
-          <a href={active === "home" ? "./research/" : "../research/"}>{t("nav.research")}</a>
-          <a href={active === "home" ? "./progress/" : "../progress/"}>{t("nav.progress")}</a>
-          <a href={active === "home" ? "./developers/" : "../developers/"}>{t("nav.developers")}</a>
-          <a href={active === "home" ? "./news/" : "../news/"}>{t("nav.news")}</a>
-          <a href={active === "home" ? "./about/" : "../about/"}>{t("nav.about")}</a>
-          <a href={active === "home" ? "./careers/" : "../careers/"}>{t("nav.careers")}</a>
-          <a href={active === "home" ? "./privacy/" : "../privacy/"}>{locale === "zh" ? "隐私" : "Privacy"}</a>
-          <a href={active === "home" ? "./terms/" : "../terms/"}>{locale === "zh" ? "条款" : "Terms"}</a>
-        </nav>
-        <nav aria-label={locale === "zh" ? "Prima 导航" : "Prima navigation"}>
-          <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Prima 官网" : "Prima website"}</a>
-          <a href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Beta 申请" : "Beta application"}</a>
-          <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
-        </nav>
+
+        {/* 十个链接原来堆成一整条，按分组拆成三列 */}
+        <div className="footer-col">
+          <p className="footer-heading">{t("footer.groupProduct")}</p>
+          <nav aria-label={t("footer.groupProduct")}>
+            <a href={anchor("products")}>{t("nav.products")}</a>
+            <a href={fromPage("model/")}>{t("nav.model")}</a>
+            <a href={fromPage("research/")}>{t("nav.research")}</a>
+            <a href={fromPage("progress/")}>{t("nav.progress")}</a>
+            <a href={fromPage("developers/")}>{t("nav.developers")}</a>
+          </nav>
+        </div>
+
+        <div className="footer-col">
+          <p className="footer-heading">{t("footer.groupCompany")}</p>
+          <nav aria-label={t("footer.groupCompany")}>
+            <a href={fromPage("about/")}>{t("nav.aboutUs")}</a>
+            <a href={fromPage("careers/")}>{t("nav.careers")}</a>
+            <a href={fromPage("news/")}>{t("nav.news")}</a>
+            <a href={fromPage("privacy/")}>{locale === "zh" ? "隐私" : "Privacy"}</a>
+            <a href={fromPage("terms/")}>{locale === "zh" ? "条款" : "Terms"}</a>
+          </nav>
+        </div>
+
+        <div className="footer-col">
+          <p className="footer-heading">{t("footer.groupContact")}</p>
+          <nav aria-label={t("footer.groupContact")}>
+            <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Prima 官网" : "Prima website"}</a>
+            <a href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Beta 申请" : "Beta application"}</a>
+            <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+          </nav>
+        </div>
       </div>
       <div className="container footer-bottom">
         <p>&copy; 2026 Oxygen AI</p>

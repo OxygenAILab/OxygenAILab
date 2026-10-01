@@ -19,12 +19,17 @@ const dictionary = {
   "nav.progress": { zh: "模型进展", en: "Model progress" },
   "nav.news": { zh: "动态", en: "Updates" },
   "nav.careers": { zh: "加入我们", en: "Careers" },
-  // 首页左侧段落轨道
+  // 首页左侧段落轨道。标签宽度直接决定轨道占多宽（左侧留白只有 ~120px），
+// 英文标签不超过 8 个字符，否则会贴到正文上
   "rail.overview": { zh: "概览", en: "Overview" },
   "rail.products": { zh: "产品矩阵", en: "Products" },
-  "rail.model": { zh: "模型规划", en: "Model plan" },
+  "rail.model": { zh: "模型规划", en: "Model" },
   "rail.approach": { zh: "方法", en: "Approach" },
   "rail.about": { zh: "关于共创", en: "About" },
+  // 页脚分组名
+  "footer.groupProduct": { zh: "产品与研究", en: "Product & research" },
+  "footer.groupCompany": { zh: "公司", en: "Company" },
+  "footer.groupContact": { zh: "联系", en: "Contact" },
   "cta.enterPrima": { zh: "进入 Prima", en: "Enter Prima" },
   "announce.beta": {
     zh: "Prima Beta 调研进行中，问卷约需 5 分钟 →",

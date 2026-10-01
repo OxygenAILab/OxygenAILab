@@ -379,7 +379,7 @@ h3 {
   .section-rail {
     display: block;
     position: fixed;
-    left: 24px;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 90;
@@ -395,11 +395,12 @@ h3 {
 .section-rail-link {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   min-height: 32px;
   /* 段落名是导航文字，须过 WCAG AA：--ink-3 在浅底上只有 2.6:1 */
   color: var(--ink-2);
-  font-size: .78rem;
+  /* 1440px 下左侧留白只有 120px，标签宽度直接决定会不会贴到正文 */
+  font-size: .76rem;
   font-weight: 500;
   white-space: nowrap;
   transition: color .2s var(--ease);
@@ -407,7 +408,7 @@ h3 {
 .section-rail-link::before {
   content: "";
   flex: none;
-  width: 10px;
+  width: 8px;
   height: 1.5px;
   border-radius: 2px;
   background: currentColor;
@@ -415,12 +416,12 @@ h3 {
   transition: width .22s var(--ease), opacity .2s var(--ease);
 }
 .section-rail-link:hover { color: var(--ink); }
-.section-rail-link:hover::before { width: 16px; opacity: .85; }
+.section-rail-link:hover::before { width: 13px; opacity: .85; }
 .section-rail-link.is-active {
   color: var(--brand);
   font-weight: 600;
 }
-.section-rail-link.is-active::before { width: 20px; opacity: 1; }
+.section-rail-link.is-active::before { width: 16px; opacity: 1; }
 
 /* 页头吸附 64px，锚点跳转要给区块标题留出余量 */
 .hero,
@@ -806,7 +807,8 @@ a:focus-visible,
   margin-top: 32px;
 }
 .spec-grid > div {
-  padding: 18px 16px;
+  /* 英文档「Architecture focus / Dynamic cognition」更长，左右各收 2px 才能不折行 */
+  padding: 18px 14px;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--r-btn);
@@ -827,15 +829,18 @@ a:focus-visible,
 /* ---------- Timeline ---------- */
 .timeline {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 0;
+  /* auto-fit：三步铺满整行。auto-fill 会多留一条空轨，行尾空出 300px；
+     gap 让三段刻度断开，长度才看得出一样 */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
 }
 .timeline-item {
-  padding: 36px 32px;
+  padding: 32px 24px 0 0;
+  /* 三段用同一档描边，靠左侧品牌色刻度做强调；
+     原来第一段单独加粗 2px，读起来像三条不同的线 */
   border-top: 1px solid var(--border);
   position: relative;
 }
-.timeline-item:first-child { border-top: 2px solid var(--ink); }
 .timeline-item::before {
   content: "";
   position: absolute;
@@ -1360,7 +1365,7 @@ a:focus-visible,
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 48px;
   padding-bottom: 48px;
   border-bottom: 1px solid var(--border-on-dark);
@@ -1375,16 +1380,22 @@ a:focus-visible,
   margin-bottom: 12px;
 }
 .footer-logo { width: 26px; height: 26px; border-radius: 7px; }
-.footer-grid > div:first-child { max-width: 320px; }
-.footer-grid > div:first-child p {
+.footer-brand-col { max-width: 320px; }
+.footer-brand-col p {
   color: rgba(255, 255, 255, .55);
   line-height: 1.7;
 }
-.footer-grid > div:first-child .footer-slogan {
+.footer-brand-col .footer-slogan {
   font-family: var(--font-display);
   font-size: 1.15rem;
   color: rgba(255, 255, 255, .92);
   margin-bottom: 8px;
+}
+.footer-heading {
+  color: var(--white);
+  font-size: .82rem;
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 .site-footer nav {
   display: grid;
@@ -1490,7 +1501,7 @@ a:focus-visible,
   .progress-route-grid { grid-template-columns: 1fr; }
   .split { gap: 32px; }
   .timeline { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px 32px; }
   .footer-bottom { flex-direction: column; gap: 8px; }
   .contact-panel { grid-template-columns: 1fr; padding: 32px; }
   .progress-route-card { min-height: 0; padding: 24px; }
@@ -1524,6 +1535,7 @@ a:focus-visible,
   .card,
   .feature-tile { padding: 24px; }
   .fact-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .survey-head { padding: 20px; }
   .survey-note { padding: 14px 20px 20px; }
 }
