@@ -19,7 +19,12 @@ import Developers from "./components/Developers";
 import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
 import Terms from "./components/Terms";
+import OfflineBanner from "./components/OfflineBanner";
 import "./site.css";
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").catch(() => {});
+}
 
 const rootElement = document.getElementById("root");
 
@@ -45,6 +50,7 @@ const pageMap: Partial<Record<PageKey, React.ReactNode>> = {
 createRoot(rootElement).render(
   <StrictMode>
     <I18nProvider>
+      <OfflineBanner />
       {pageId === "home" ? <App /> : <PageApp active={pageId}>{pageMap[pageId] ?? <App />}</PageApp>}
     </I18nProvider>
   </StrictMode>,
