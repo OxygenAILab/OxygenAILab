@@ -231,6 +231,81 @@ h3 {
   transition: color .15s var(--ease);
 }
 .site-nav a:hover { color: var(--ink); }
+
+/* ---------- 顶栏分组下拉 ---------- */
+.nav-group { position: relative; display: inline-flex; }
+.nav-group > button {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .92rem;
+  font-weight: 500;
+  transition: color .15s var(--ease);
+}
+.nav-group > button:hover,
+.nav-group.is-current > button { color: var(--ink); }
+.nav-caret {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  rotate: 45deg;
+  translate: 0 -1px;
+  transition: rotate .2s var(--ease), translate .2s var(--ease);
+}
+.nav-group:has(button[aria-expanded="true"]) .nav-caret { rotate: -135deg; translate: 0 1px; }
+/* padding-top 充当悬停桥：指针从文字移向卡片途中不断开 */
+.nav-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  translate: -50% 0;
+  transform: translateY(-6px);
+  padding-top: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s var(--ease), transform .18s var(--ease), visibility .18s var(--ease);
+}
+.nav-group:hover .nav-panel,
+.nav-group:focus-within .nav-panel,
+.nav-group:has(button[aria-expanded="true"]) .nav-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.nav-card {
+  display: grid;
+  gap: 2px;
+  min-width: 188px;
+  padding: 8px;
+  background: rgba(255, 255, 255, .96);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.nav-card a {
+  display: block;
+  padding: 9px 14px;
+  border-radius: var(--r-btn);
+  color: var(--ink-2);
+  font-size: .9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color .15s var(--ease), background-color .15s var(--ease);
+}
+.nav-card a:hover { color: var(--brand-dark); background: var(--brand-soft); }
+.nav-card a[aria-current="page"] { color: var(--brand-dark); font-weight: 600; }
+
 .site-header .button { margin-left: auto; }
 
 /* ---------- 移动导航：汉堡 + 抽屉 ---------- */
@@ -270,7 +345,7 @@ h3 {
   overflow-y: auto;
 }
 .nav-drawer.open { display: block; }
-.nav-drawer nav { display: grid; }
+.nav-drawer nav { display: grid; border-top: 1px solid var(--border); }
 .nav-drawer .nav-link {
   display: block;
   padding: 15px 0;
@@ -279,8 +354,76 @@ h3 {
   font-size: 1.05rem;
   font-weight: 500;
 }
-.nav-drawer nav .nav-link:first-child { border-top: 1px solid var(--border); }
+.nav-drawer-group {
+  display: grid;
+  border-bottom: 1px solid var(--border);
+}
+.nav-drawer-heading {
+  padding: 16px 0 2px;
+  color: var(--ink-3);
+  font-size: .78rem;
+  font-weight: 600;
+}
+.nav-drawer-group .nav-link {
+  padding: 11px 0 11px 18px;
+  border-bottom: 0;
+  font-size: 1rem;
+}
 .nav-drawer .button { width: 100%; margin-top: 28px; }
+
+/* ---------- 首页左侧段落轨道（宽屏专用） ----------
+   容器上限 1200px，两侧留白要到 1440px 才容得下常显文字，故断点取 1440px */
+.section-rail { display: none; }
+@media (min-width: 1440px) {
+  .section-rail {
+    display: block;
+    position: fixed;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+  }
+}
+.section-rail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.section-rail-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  color: var(--ink-3);
+  font-size: .78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color .2s var(--ease);
+}
+.section-rail-link::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: .5;
+  transition: width .22s var(--ease), opacity .2s var(--ease);
+}
+.section-rail-link:hover { color: var(--ink); }
+.section-rail-link:hover::before { width: 16px; opacity: .85; }
+.section-rail-link.is-active {
+  color: var(--brand);
+  font-weight: 600;
+}
+.section-rail-link.is-active::before { width: 20px; opacity: 1; }
+
+/* 页头吸附 64px，锚点跳转要给区块标题留出余量 */
+.hero,
+.section,
+.cta-section { scroll-margin-top: 84px; }
 
 /* ---------- Buttons ---------- */
 .button {

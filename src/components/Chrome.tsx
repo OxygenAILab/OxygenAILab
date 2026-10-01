@@ -16,23 +16,72 @@ export type PageKey =
   | "privacy"
   | "terms";
 
-// 导航项集中一处，桌面导航与移动抽屉共用，避免两份链接各写一遍
-const NAV: Array<{ key: "nav.products" | "nav.model" | "nav.research" | "nav.progress" | "nav.developers" | "nav.news" | "nav.about" | "nav.careers"; anchor: string; page?: PageKey }> = [
-  { key: "nav.products", anchor: "products" },
-  { key: "nav.model", anchor: "model", page: "model" },
-  { key: "nav.research", anchor: "research", page: "research" },
-  { key: "nav.progress", anchor: "progress", page: "progress" },
-  { key: "nav.developers", anchor: "developers", page: "developers" },
-  { key: "nav.news", anchor: "news", page: "news" },
-  { key: "nav.about", anchor: "about", page: "about" },
-  { key: "nav.careers", anchor: "careers", page: "careers" },
+type NavTextKey =
+  | "nav.products"
+  | "nav.research"
+  | "nav.developers"
+  | "nav.about"
+  | "nav.prima"
+  | "nav.researchDirections"
+  | "nav.progress"
+  | "nav.aboutUs"
+  | "nav.careers"
+  | "nav.news";
+
+type NavItem = {
+  /** 站内路由；与 href 二选一 */
+  page?: PageKey;
+  /** 站外地址；与 page 二选一 */
+  href?: string;
+  /** i18n 文案键 */
+  key?: NavTextKey;
+  /** 直接展示的文案，用于专有名词（模型名取自 config，不写进词典） */
+  literal?: string;
+};
+
+type NavEntry = { id: string; key: NavTextKey; page?: PageKey; children?: NavItem[] };
+
+// 顶栏只留四个分组。页内段落跳转交给首页左侧的 SectionRail，
+// 顶栏只回答「网站有哪些板块」，两者职责分开。
+// 导航项集中一处，桌面下拉与移动抽屉共用，避免两份链接各写一遍。
+const NAV: NavEntry[] = [
+  {
+    id: "products",
+    key: "nav.products",
+    children: [
+      { href: siteConfig.productUrl, key: "nav.prima" },
+      { page: "model", literal: siteConfig.model.name },
+    ],
+  },
+  {
+    id: "research",
+    key: "nav.research",
+    children: [
+      { page: "research", key: "nav.researchDirections" },
+      { page: "progress", key: "nav.progress" },
+    ],
+  },
+  { id: "developers", key: "nav.developers", page: "developers" },
+  {
+    id: "about",
+    key: "nav.about",
+    children: [
+      { page: "about", key: "nav.aboutUs" },
+      { page: "careers", key: "nav.careers" },
+      { page: "news", key: "nav.news" },
+    ],
+  },
 ];
 
-function navHref(item: { anchor: string; page?: PageKey }, active: PageKey) {
-  if (!item.page) return active === "home" ? `#${item.anchor}` : `../#${item.anchor}`;
-  if (active === "home") return `./${item.anchor}/`;
-  if (active === item.page) return "#top";
-  return `../${item.anchor}/`;
+function navHref(page: PageKey | undefined, active: PageKey) {
+  if (!page) return active === "home" ? "#top" : "../";
+  if (active === "home") return `./${page}/`;
+  if (active === page) return "#top";
+  return `../${page}/`;
+}
+
+function labelOf(item: NavItem, t: (key: NavTextKey) => string) {
+  return item.literal ?? (item.key ? t(item.key) : "");
 }
 
 function Announce() {
@@ -49,6 +98,7 @@ function Announce() {
 
 export function Header({ active = "home" }: { active?: PageKey }) {
   const [open, setOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const { locale, t } = useI18n();
 
   useEffect(() => {
@@ -64,6 +114,20 @@ export function Header({ active = "home" }: { active?: PageKey }) {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!openGroup) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenGroup(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [openGroup]);
+
+  const closeAll = () => {
+    setOpen(false);
+    setOpenGroup(null);
+  };
+
   return (
     <>
       <Announce />
@@ -74,15 +138,65 @@ export function Header({ active = "home" }: { active?: PageKey }) {
           <span>{siteConfig.brand}</span>
         </a>
         <nav className="site-nav" aria-label={locale === "zh" ? "主导航" : "Main navigation"}>
-          {NAV.map((item) => (
-            <a
-              key={item.key}
-              href={navHref(item, active)}
-              aria-current={item.page === active ? "page" : undefined}
-            >
-              {t(item.key)}
-            </a>
-          ))}
+          {NAV.map((entry) => {
+            if (!entry.children) {
+              return (
+                <a
+                  key={entry.id}
+                  href={navHref(entry.page, active)}
+                  aria-current={entry.page === active ? "page" : undefined}
+                >
+                  {t(entry.key)}
+                </a>
+              );
+            }
+            const inGroup = entry.children.some((child) => child.page === active);
+            const opened = openGroup === entry.id;
+            return (
+              <div
+                key={entry.id}
+                className={inGroup ? "nav-group is-current" : "nav-group"}
+                onMouseEnter={() => setOpenGroup(entry.id)}
+                onMouseLeave={() => setOpenGroup(null)}
+              >
+                <button
+                  type="button"
+                  aria-expanded={opened}
+                  aria-haspopup="true"
+                  onClick={() => setOpenGroup(opened ? null : entry.id)}
+                >
+                  {t(entry.key)}
+                  <span className="nav-caret" aria-hidden="true" />
+                </button>
+                <div className="nav-panel">
+                  <div className="nav-card">
+                    {entry.children.map((child, index) =>
+                      child.href ? (
+                        <a
+                          key={`${entry.id}-${index}`}
+                          href={child.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setOpenGroup(null)}
+                        >
+                          {labelOf(child, t)}
+                        </a>
+                      ) : (
+                        <a
+                          key={`${entry.id}-${index}`}
+                          href={navHref(child.page, active)}
+                          aria-current={child.page === active ? "page" : undefined}
+                          onClick={() => setOpenGroup(null)}
+                        >
+                          {labelOf(child, t)}
+                        </a>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </nav>
         <a className="button primary compact header-cta" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
           {t("cta.enterPrima")}
@@ -104,18 +218,54 @@ export function Header({ active = "home" }: { active?: PageKey }) {
       <div id="site-drawer" className={open ? "nav-drawer open" : "nav-drawer"}>
         <div className="container">
           <nav aria-label={locale === "zh" ? "移动导航" : "Mobile navigation"}>
-            {NAV.map((item) => (
-              <a key={item.key} className="nav-link" href={navHref(item, active)} onClick={() => setOpen(false)}>
-                {t(item.key)}
-              </a>
-            ))}
+            {NAV.map((entry) =>
+              entry.children ? (
+                <div className="nav-drawer-group" key={entry.id}>
+                  <p className="nav-drawer-heading">{t(entry.key)}</p>
+                  {entry.children.map((child, index) =>
+                    child.href ? (
+                      <a
+                        key={`${entry.id}-${index}`}
+                        className="nav-link nav-link-child"
+                        href={child.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeAll}
+                      >
+                        {labelOf(child, t)}
+                      </a>
+                    ) : (
+                      <a
+                        key={`${entry.id}-${index}`}
+                        className="nav-link nav-link-child"
+                        href={navHref(child.page, active)}
+                        aria-current={child.page === active ? "page" : undefined}
+                        onClick={closeAll}
+                      >
+                        {labelOf(child, t)}
+                      </a>
+                    ),
+                  )}
+                </div>
+              ) : (
+                <a
+                  key={entry.id}
+                  className="nav-link"
+                  href={navHref(entry.page, active)}
+                  aria-current={entry.page === active ? "page" : undefined}
+                  onClick={closeAll}
+                >
+                  {t(entry.key)}
+                </a>
+              ),
+            )}
           </nav>
           <a
             className="button primary"
             href={siteConfig.productUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => setOpen(false)}
+            onClick={closeAll}
           >
             {t("cta.enterPrima")}
           </a>

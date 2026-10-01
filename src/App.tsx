@@ -3,6 +3,7 @@ import { useI18n } from "./i18n";
 import { Footer, Header } from "./components/Chrome";
 import PageMotion from "./components/Motion";
 import RegionBanner from "./components/RegionBanner";
+import SectionRail from "./components/SectionRail";
 import { About, Approach, Hero, Model, Products } from "./components/Sections";
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
         <Approach />
         <About />
       </main>
+      <SectionRail />
       <Footer />
     </>
   );

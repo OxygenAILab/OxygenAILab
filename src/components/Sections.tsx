@@ -58,7 +58,7 @@ export function Hero() {
   const { t } = useI18n();
 
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section className="hero" id="hero" aria-labelledby="hero-title">
       <HeroArtwork />
       <div className="container">
         <div className="hero-inner reveal">

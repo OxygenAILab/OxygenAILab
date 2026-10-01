@@ -5,14 +5,26 @@ export type Locale = "zh" | "en";
 type Entry = { zh: string; en: string };
 
 const dictionary = {
+  // 顶栏四个分组：产品 / 研究 / 开发者 / 关于
   "nav.products": { zh: "产品", en: "Products" },
-  "nav.model": { zh: "模型", en: "Models" },
   "nav.research": { zh: "研究", en: "Research" },
-  "nav.progress": { zh: "进展", en: "Progress" },
   "nav.developers": { zh: "开发者", en: "Developers" },
-  "nav.news": { zh: "动态", en: "Updates" },
   "nav.about": { zh: "关于", en: "About" },
+  // 下拉子项
+  "nav.prima": { zh: "Prima", en: "Prima" },
+  "nav.researchDirections": { zh: "研究方向", en: "Research directions" },
+  "nav.aboutUs": { zh: "关于我们", en: "About us" },
+  // 子页与页脚沿用
+  "nav.model": { zh: "模型", en: "Models" },
+  "nav.progress": { zh: "模型进展", en: "Model progress" },
+  "nav.news": { zh: "动态", en: "Updates" },
   "nav.careers": { zh: "加入我们", en: "Careers" },
+  // 首页左侧段落轨道
+  "rail.overview": { zh: "概览", en: "Overview" },
+  "rail.products": { zh: "产品矩阵", en: "Products" },
+  "rail.model": { zh: "模型规划", en: "Model plan" },
+  "rail.approach": { zh: "方法", en: "Approach" },
+  "rail.about": { zh: "关于共创", en: "About" },
   "cta.enterPrima": { zh: "进入 Prima", en: "Enter Prima" },
   "announce.beta": {
     zh: "Prima Beta 调研进行中，问卷约需 5 分钟 →",
