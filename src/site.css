@@ -21,6 +21,8 @@
   --font-display: "Lora", "Source Han Serif SC", "Noto Serif SC", "Songti SC", Georgia, serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Source Han Sans CN",
     "PingFang SC", "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  /* 此前只有 .brief-shell pre 引用却从未定义，那里的 font-family 一直是失效声明 */
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Cascadia Mono", monospace;
   --ease: cubic-bezier(.22, 1, .36, 1);
 }
 
@@ -652,20 +654,6 @@ a:focus-visible,
   .split-art-spark { animation: none; }
 }
 
-.stage-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 0 0 28px;
-}
-
 /* ---------- Sections ---------- */
 .section {
   padding: 112px 0;
@@ -691,7 +679,6 @@ a:focus-visible,
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--r-card);
-  transition: border-color .25s var(--ease);
 }
 .card:hover {
   border-color: rgba(22, 24, 29, .22);
@@ -879,32 +866,6 @@ a:focus-visible,
   margin-bottom: 40px;
 }
 .cta-section .hero-actions { justify-content: center; }
-.benefit-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto 40px;
-  max-width: 560px;
-  display: grid;
-  gap: 12px;
-  text-align: left;
-}
-.benefit-list li {
-  position: relative;
-  padding-left: 24px;
-  color: var(--ink-2);
-  font-size: .95rem;
-  line-height: 1.65;
-}
-.benefit-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 2px;
-  background: var(--brand);
-}
 
 /* ---------- Sub pages (About / Model / How / Scenarios) ---------- */
 .about-page {
@@ -1115,10 +1076,8 @@ a:focus-visible,
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--r-card);
-  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
 }
 .progress-route-card:hover {
-  transform: translateY(-3px);
   border-color: rgba(22, 24, 29, .18);
   box-shadow: var(--shadow-sm);
 }
@@ -1310,52 +1269,6 @@ a:focus-visible,
 .contact-panel .button { background: var(--white); color: var(--ink); }
 .contact-panel .button:hover { background: var(--bg-alt); }
 
-/* ---------- Beta / Survey page ---------- */
-.beta-page {
-  padding: 96px 0 128px;
-  background: var(--bg);
-}
-.beta-page .section-head {
-  max-width: 780px;
-  margin-bottom: 48px;
-}
-.survey-shell {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--r-panel);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-}
-.survey-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--border);
-}
-.survey-head h2 { font-family: var(--font-sans); font-size: 1.25rem; margin-top: 8px; }
-.survey-head .tag { margin-bottom: 0; }
-.survey-frame {
-  position: relative;
-  width: 100%;
-  min-height: 640px;
-}
-.survey-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-.survey-note {
-  padding: 16px 32px 24px;
-  font-size: .85rem;
-  color: var(--ink-3);
-  background: var(--bg-alt);
-}
-
 /* ---------- Footer (dark, multi-column) ---------- */
 .site-footer {
   padding: 72px 0 40px;
@@ -1414,12 +1327,36 @@ a:focus-visible,
   color: rgba(255, 255, 255, .4);
 }
 .footer-bottom p { margin: 0; }
+/* 此前没有规则，深色页脚里露出的是浏览器默认按钮 */
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  flex: none;
+  border: 1px solid var(--border-on-dark);
+  border-radius: var(--r-btn);
+  background: transparent;
+  color: rgba(255, 255, 255, .72);
+  cursor: pointer;
+  font-size: .9rem;
+  line-height: 1;
+  transition: color .18s var(--ease), border-color .18s var(--ease);
+}
+.back-to-top:hover {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, .5);
+}
 
 /* ---------- Reveal animation ---------- */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
+  /* transition-delay 必须排在 transition 简写之后，简写会把 delay 重置为 0 */
   transition: opacity .7s var(--ease), transform .7s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 .reveal.visible {
   opacity: 1;
@@ -1438,9 +1375,6 @@ a:focus-visible,
   background: var(--brand);
   transform: scaleX(0);
   transform-origin: left;
-}
-.reveal {
-  transition-delay: var(--reveal-delay, 0ms);
 }
 .card,
 .feature-tile,
@@ -1536,8 +1470,6 @@ a:focus-visible,
   .feature-tile { padding: 24px; }
   .fact-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .survey-head { padding: 20px; }
-  .survey-note { padding: 14px 20px 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

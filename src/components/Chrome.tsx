@@ -267,7 +267,7 @@ export function Header({ active = "home" }: { active?: PageKey }) {
                     child.href ? (
                       <a
                         key={`${entry.id}-${index}`}
-                        className="nav-link nav-link-child"
+                        className="nav-link"
                         href={child.href}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -278,7 +278,7 @@ export function Header({ active = "home" }: { active?: PageKey }) {
                     ) : (
                       <a
                         key={`${entry.id}-${index}`}
-                        className="nav-link nav-link-child"
+                        className="nav-link"
                         href={navHref(child.page, active)}
                         aria-current={child.page === active ? "page" : undefined}
                         onClick={closeAll}

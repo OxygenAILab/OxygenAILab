@@ -32,8 +32,8 @@ export default function About() {
   const { locale } = useI18n();
   const facts: Array<{ label: Localized; value: string }> = [
     { label: { zh: "产品方向", en: "Product direction" }, value: "Prima" },
-    { label: { zh: "模型规划", en: "Model plan" }, value: "OxygenDCM N1" },
-    { label: { zh: "模型规格", en: "Model spec" }, value: "35B MoE" },
+    { label: { zh: "模型规划", en: "Model plan" }, value: siteConfig.model.name },
+    { label: { zh: "模型规格", en: "Model spec" }, value: siteConfig.model.parameters },
     { label: { zh: "架构重点", en: "Architecture focus" }, value: locale === "zh" ? siteConfig.model.architecture : "Dynamic cognition" },
     { label: { zh: "阶段", en: "Stage" }, value: locale === "zh" ? "早期研究 / 共创" : "Early research / co-creation" },
   ];

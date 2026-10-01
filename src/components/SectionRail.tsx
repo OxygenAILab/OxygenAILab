@@ -57,7 +57,7 @@ export default function SectionRail() {
               aria-current={activeId === item.id ? "true" : undefined}
               onClick={(event) => handleClick(event, item.id)}
             >
-              <span className="section-rail-label">{t(item.key)}</span>
+              {t(item.key)}
             </a>
           </li>
         ))}
