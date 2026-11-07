@@ -13,6 +13,7 @@ const dictionary = {
   // 下拉子项
   "nav.prima": { zh: "Prima", en: "Prima" },
   "nav.researchDirections": { zh: "研究方向", en: "Research directions" },
+  "nav.lab": { zh: "实验室", en: "Lab" },
   "nav.aboutUs": { zh: "关于我们", en: "About us" },
   // 子页与页脚沿用
   "nav.model": { zh: "模型", en: "Models" },

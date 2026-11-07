@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { siteConfig } from "../config";
-import logoImage from "../../assets/images/logo.png";
+import logoBlack from "../../assets/images/oxygen-ai-black.png";
+import logoWhite from "../../assets/images/oxygen-ai-white.png";
 import { useI18n } from "../i18n";
 
 export type PageKey =
@@ -23,6 +24,7 @@ type NavTextKey =
   | "nav.about"
   | "nav.prima"
   | "nav.researchDirections"
+  | "nav.lab"
   | "nav.progress"
   | "nav.aboutUs"
   | "nav.careers"
@@ -59,6 +61,7 @@ const NAV: NavEntry[] = [
     children: [
       { page: "research", key: "nav.researchDirections" },
       { page: "progress", key: "nav.progress" },
+      { href: siteConfig.labUrl, key: "nav.lab" },
     ],
   },
   { id: "developers", key: "nav.developers", page: "developers" },
@@ -158,8 +161,8 @@ export function Header({ active = "home" }: { active?: PageKey }) {
       <Announce />
       <header className="site-header" id="top">
       <div className="container header-inner">
-        <a className="brand" href="#top" aria-label={locale === "zh" ? "Oxygen AI 首页" : "Oxygen AI home"}>
-          <img className="brand-mark" src={logoImage} alt="" width={30} height={30} />
+        <a className="brand" href="/" aria-label={locale === "zh" ? "Oxygen AI 首页" : "Oxygen AI home"}>
+          <img className="brand-mark" src={logoBlack} alt="" width={38} height={38} />
           <span>{siteConfig.brand}</span>
         </a>
         <nav className="site-nav" aria-label={locale === "zh" ? "主导航" : "Main navigation"}>
@@ -325,10 +328,10 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand-col">
-          <p className="footer-brand">
-            <img className="footer-logo" src={logoImage} alt="" width={28} height={28} />
+          <a className="footer-brand" href="/" aria-label={locale === "zh" ? "Oxygen AI 首页" : "Oxygen AI home"}>
+            <img className="footer-logo" src={logoWhite} alt="" width={36} height={36} />
             {siteConfig.brand}
-          </p>
+          </a>
           <p className="footer-slogan">{t("oxygen.slogan")}</p>
           <p>{t("footer.researchBase")}</p>
         </div>
@@ -341,6 +344,9 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
             <a href={fromPage("model/")}>{t("nav.model")}</a>
             <a href={fromPage("research/")}>{t("nav.research")}</a>
             <a href={fromPage("progress/")}>{t("nav.progress")}</a>
+            <a href={siteConfig.labUrl} target="_blank" rel="noopener noreferrer">
+              {t("nav.lab")}
+            </a>
             <a href={fromPage("developers/")}>{t("nav.developers")}</a>
           </nav>
         </div>

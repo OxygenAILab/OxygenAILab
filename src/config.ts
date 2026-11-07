@@ -4,6 +4,7 @@ export const siteConfig = {
   productSlogan: "星火灵现，构于基元。",
   productUrl: "https://prima.oxygenai.top/",
   betaUrl: "https://prima.oxygenai.top/beta/",
+  labUrl: "https://lab.oxygenai.top/",
   contactEmail: "contact@oxygenai.top",
   labEmail: "Lab@oxygenai.top",
   hrEmail: "hr001@oxygenai.top",
