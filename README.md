@@ -60,7 +60,7 @@ src/
   components/           Chrome（页头/页脚/移动抽屉）、Sections（首页区块）、
                         HeroArtwork（首屏主视觉）、各页组件
   site.css              全站样式与设计令牌
-public/                 原样拷贝进 dist：404.html、CNAME、favicon.png、og.jpg、robots.txt、sitemap.xml
+public/                 原样拷贝进 dist：404.html、CNAME、favicon-v3.png、og.jpg、robots.txt、sitemap.xml
 assets/images/          源图（logo、配图），由组件 import 后走 Vite 哈希
 docs/                   GitHub Pages 的实际发布目录，见下节
 ```
@@ -105,7 +105,7 @@ docs/                   GitHub Pages 的实际发布目录，见下节
 - 字体改为 `@fontsource/lora` 自托管（此前声明了 Lora 却从未加载）。
 - 新增移动端导航：`.nav-toggle` 44px 触控目标、三横线 morph 成 X、`.nav-drawer` 全屏抽屉、Esc 关闭并锁滚动。
 - 新增 `public/404.html`：自包含的中文 404，含返回首页与问卷入口。
-- 修正社交卡片：`og:image` 原来指向 Vite 哈希路径（线上必 404），现改为稳定的 `https://oxygenai.top/og.jpg`。`og.jpg` 与 `favicon.png` 一并从 `assets/` 迁到 `public/`，避免文件名被哈希。8 个入口页同步补齐 `og:url`、`og:site_name`、`twitter:*`、`theme-color`。
+- 修正社交卡片：`og:image` 原来指向 Vite 哈希路径（线上必 404），现改为稳定的 `https://oxygenai.top/og.jpg`。`og.jpg` 与版本化的 `favicon-v3.png` 一并从 `assets/` 迁到 `public/`，避免文件名被哈希或 CDN 旧缓存覆盖。8 个入口页同步补齐 `og:url`、`og:site_name`、`twitter:*`、`theme-color`。
 - `App.tsx` 的锚点跳转加了非法 hash 兜底，`querySelector` 不再因坏 hash 抛异常。
 - `.gitignore` 建立，`node_modules/`、`dist/`、`*.tsbuildinfo` 不再可能被提交。
 - CI 的 `deploy.yml` 补上 `npm run lint`。

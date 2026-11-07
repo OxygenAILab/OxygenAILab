@@ -15,7 +15,7 @@ const PRECACHE = [
   "/research/",
   "/terms/",
   "/404.html",
-  "/favicon.png",
+  "/favicon-v3.png",
   "/og.jpg",
   "/robots.txt",
   "/sitemap.xml",
