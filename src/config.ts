@@ -11,7 +11,7 @@ export const siteConfig = {
   cloudUrl: "https://cloud.oxygenai.top/",
   nothingPlatformUrl: "https://apic.oxygenai.top/",
   contactEmail: "contact@oxygenai.top",
-  labEmail: "Lab@oxygenai.top",
+  labEmail: "lab@oxygenai.top",
   hrEmail: "hr001@oxygenai.top",
   model: {
     name: "OxygenDCM N1",
