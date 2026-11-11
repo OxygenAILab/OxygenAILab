@@ -103,8 +103,8 @@ export default function ModelPage() {
               : "Each entry is labeled only by current stage; mechanisms stay directional until publications or release notes confirm details."}
           </p>
           <p>
-            <a className="text-link" href="../progress/">
-              {locale === "zh" ? "查看进展与研究" : "See progress and research"}&nbsp;&rarr;
+            <a className="text-link" href={siteConfig.labUrl} target="_blank" rel="noopener noreferrer">
+              {locale === "zh" ? "访问实验室" : "Visit the Lab"}&nbsp;&rarr;
             </a>
           </p>
         </div>

@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { siteConfig } from "../config";
-import logoBlack from "../../assets/images/oxygen-ai-black.png";
 import logoWhite from "../../assets/images/oxygen-ai-white.png";
 import { useI18n } from "../i18n";
 
@@ -41,7 +40,7 @@ type NavItem = {
   literal?: string;
 };
 
-type NavEntry = { id: string; key: NavTextKey; page?: PageKey; children?: NavItem[] };
+type NavEntry = { id: string; key: NavTextKey; page?: PageKey; href?: string; children?: NavItem[] };
 
 // 顶栏只留四个分组。页内段落跳转交给首页左侧的 SectionRail，
 // 顶栏只回答「网站有哪些板块」，两者职责分开。
@@ -52,25 +51,19 @@ const NAV: NavEntry[] = [
     key: "nav.products",
     children: [
       { href: siteConfig.productUrl, key: "nav.prima" },
-      { page: "model", literal: siteConfig.model.name },
+      { href: siteConfig.captchaUrl, literal: "OxygenCaptcha" },
+      { href: siteConfig.dropUrl, literal: "OxygenDrop" },
+      { href: siteConfig.cloudUrl, literal: "OxygenCloud" },
+      { href: siteConfig.nothingPlatformUrl, literal: "Nothing Platform" },
     ],
   },
-  {
-    id: "research",
-    key: "nav.research",
-    children: [
-      { page: "research", key: "nav.researchDirections" },
-      { page: "progress", key: "nav.progress" },
-      { href: siteConfig.labUrl, key: "nav.lab" },
-    ],
-  },
-  { id: "developers", key: "nav.developers", page: "developers" },
+  { id: "lab", key: "nav.lab", href: siteConfig.labUrl },
+  { id: "careers", key: "nav.careers", page: "developers" },
   {
     id: "about",
     key: "nav.about",
     children: [
       { page: "about", key: "nav.aboutUs" },
-      { page: "careers", key: "nav.careers" },
       { page: "news", key: "nav.news" },
     ],
   },
@@ -162,12 +155,18 @@ export function Header({ active = "home" }: { active?: PageKey }) {
       <header className="site-header" id="top">
       <div className="container header-inner">
         <a className="brand" href="/" aria-label={locale === "zh" ? "Oxygen AI 首页" : "Oxygen AI home"}>
-          <img className="brand-mark" src={logoBlack} alt="" width={38} height={38} />
           <span>{siteConfig.brand}</span>
         </a>
         <nav className="site-nav" aria-label={locale === "zh" ? "主导航" : "Main navigation"}>
           {NAV.map((entry) => {
             if (!entry.children) {
+              if (entry.href) {
+                return (
+                  <a key={entry.id} href={entry.href} target="_blank" rel="noopener noreferrer">
+                    {t(entry.key)}
+                  </a>
+                );
+              }
               return (
                 <a
                   key={entry.id}
@@ -232,8 +231,16 @@ export function Header({ active = "home" }: { active?: PageKey }) {
             );
           })}
         </nav>
-        <a className="button primary compact header-cta" href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">
-          {t("cta.enterPrima")}
+        <a
+          className="header-account"
+          href={siteConfig.accountUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={locale === "zh" ? "登录 OxygenAccount" : "Sign in to OxygenAccount"}
+        >
+          <span className="header-account-dot" aria-hidden="true" />
+          <span>OxygenAccount</span>
+          <span className="header-account-action">{locale === "zh" ? "登录" : "Sign in"}</span>
         </a>
         <button
           type="button"
@@ -291,6 +298,17 @@ export function Header({ active = "home" }: { active?: PageKey }) {
                     ),
                   )}
                 </div>
+              ) : entry.href ? (
+                <a
+                  key={entry.id}
+                  className="nav-link"
+                  href={entry.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeAll}
+                >
+                  {t(entry.key)}
+                </a>
               ) : (
                 <a
                   key={entry.id}
@@ -306,12 +324,12 @@ export function Header({ active = "home" }: { active?: PageKey }) {
           </nav>
           <a
             className="button primary"
-            href={siteConfig.productUrl}
+            href={siteConfig.accountUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeAll}
           >
-            {t("cta.enterPrima")}
+            {locale === "zh" ? "登录 OxygenAccount" : "Sign in to OxygenAccount"}
           </a>
         </div>
       </div>
@@ -342,12 +360,12 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
           <nav aria-label={t("footer.groupProduct")}>
             <a href={anchor("products")}>{t("nav.products")}</a>
             <a href={fromPage("model/")}>{t("nav.model")}</a>
-            <a href={fromPage("research/")}>{t("nav.research")}</a>
-            <a href={fromPage("progress/")}>{t("nav.progress")}</a>
             <a href={siteConfig.labUrl} target="_blank" rel="noopener noreferrer">
               {t("nav.lab")}
             </a>
-            <a href={fromPage("developers/")}>{t("nav.developers")}</a>
+            <a href={siteConfig.captchaUrl} target="_blank" rel="noopener noreferrer">OxygenCaptcha</a>
+            <a href={siteConfig.dropUrl} target="_blank" rel="noopener noreferrer">OxygenDrop</a>
+            <a href={siteConfig.cloudUrl} target="_blank" rel="noopener noreferrer">OxygenCloud</a>
           </nav>
         </div>
 
@@ -366,6 +384,7 @@ export function Footer({ active = "home" }: { active?: PageKey }) {
           <p className="footer-heading">{t("footer.groupContact")}</p>
           <nav aria-label={t("footer.groupContact")}>
             <a href={siteConfig.productUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Prima 官网" : "Prima website"}</a>
+            <a href={siteConfig.accountUrl} target="_blank" rel="noopener noreferrer">OxygenAccount</a>
             <a href={siteConfig.betaUrl} target="_blank" rel="noopener noreferrer">{locale === "zh" ? "Beta 申请" : "Beta application"}</a>
             <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
           </nav>

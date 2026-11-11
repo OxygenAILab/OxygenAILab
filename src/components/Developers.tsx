@@ -4,144 +4,128 @@ import { useI18n } from "../i18n";
 import type { Localized } from "../data/content";
 
 type Track = { title: Localized; status: Localized; copy: Localized; items: Localized[] };
-type Item = { title: Localized; copy: Localized };
+type Requirement = { title: Localized; copy: Localized };
+type Step = { title: Localized; copy: Localized };
 type Faq = { q: Localized; a: Localized };
 
 const tracks: Track[] = [
   {
     title: { zh: "产品共创", en: "Product co-creation" },
-    status: { zh: "少量名额", en: "Limited openings" },
+    status: { zh: "长期开放", en: "Open ongoing" },
     copy: {
-      zh: "把 Prima 放进一个已经存在的真实工作流，验证它能否减少返工和重复解释。",
-      en: "Put Prima into an existing real workflow and test whether it reduces rework and repeated explanations.",
+      zh: "把 Prima 放进已经存在的真实工作流，验证它能否减少返工与重复解释。",
+      en: "Put Prima into an existing workflow and test whether it reduces rework and repeated explanation.",
     },
     items: [
-      { zh: "每周一次短反馈", en: "One short feedback session each week" },
-      { zh: "可追溯的任务样本", en: "Traceable task samples" },
-      { zh: "共同确认优先级", en: "Confirm priorities together" },
+      { zh: "真实任务样本", en: "Real task samples" },
+      { zh: "每周一次反馈", en: "One feedback session each week" },
+      { zh: "共同确认优先级", en: "Shared priority reviews" },
     ],
   },
   {
     title: { zh: "研究协作", en: "Research collaboration" },
-    status: { zh: "按场景筛选", en: "Scenario-based selection" },
+    status: { zh: "按课题筛选", en: "Topic-based selection" },
     copy: {
       zh: "围绕长任务失败点整理可复现样本，帮助团队判断哪些能力值得进入模型研究。",
-      en: "Organize reproducible samples around long-task failures to decide which capabilities deserve model research.",
+      en: "Organize reproducible samples around long-task failures to decide which capabilities should enter model research.",
     },
     items: [
       { zh: "任务断点记录", en: "Task-break records" },
-      { zh: "评测口径讨论", en: "Evaluation-metric discussion" },
-      { zh: "方向级结论同步", en: "Direction-level conclusions" },
-    ],
-  },
-  {
-    title: { zh: "边界探索", en: "Boundary exploration" },
-    status: { zh: "规划中", en: "Planned" },
-    copy: {
-      zh: "面向敏感工作区讨论访问控制、私有上下文和更清晰的部署边界。",
-      en: "Discuss access control, private context, and clearer deployment boundaries for sensitive workspaces.",
-    },
-    items: [
-      { zh: "权限与保留策略", en: "Permission and retention policies" },
-      { zh: "私有区适用性", en: "Private-zone fit" },
-      { zh: "控制方式反馈", en: "Control-method feedback" },
+      { zh: "评测口径讨论", en: "Evaluation-method reviews" },
+      { zh: "方向级结论同步", en: "Direction-level findings" },
     ],
   },
 ];
 
-const statuses: Array<{ label: Localized; value: Localized }> = [
-  { label: { zh: "公开 API", en: "Public API" }, value: { zh: "未开放", en: "Not open" } },
-  { label: { zh: "早期接入", en: "Early access" }, value: { zh: "邀约制", en: "Invitation only" } },
-  { label: { zh: "数据用于训练", en: "Data used for training" }, value: { zh: "默认不使用", en: "Not by default" } },
-];
-
-const readiness: Item[] = [
+const requirements: Requirement[] = [
   {
-    title: { zh: "一个真实任务", en: "One real task" },
+    title: { zh: "中文（如有）", en: "Chinese (if available)" },
     copy: {
-      zh: "有具体文件、工具、审批人或交付物，而不是一个泛化的演示需求。",
-      en: "Concrete files, tools, approvers, or deliverables, not a generic demo requirement.",
+      zh: "如果你有中文材料，请一并附上；没有中文材料不影响申请。",
+      en: "Include Chinese material when available; not having it does not block an application.",
     },
   },
   {
-    title: { zh: "一条边界说明", en: "A boundary statement" },
+    title: { zh: "英文全名", en: "Full name in English" },
     copy: {
-      zh: "说明哪些资料能进入验证、哪些必须脱敏，以及结果可以保留多久。",
-      en: "State what can enter validation, what must be anonymized, and how long results may be retained.",
+      zh: "请在邮件正文中写明你的英文全名。",
+      en: "State your full name in English in the email body.",
     },
   },
   {
-    title: { zh: "一个失败现场", en: "A failure scene" },
+    title: { zh: "简短自我介绍", en: "Brief introduction" },
     copy: {
-      zh: "能指出任务在哪里中断、谁需要补救，以及正确结果本应是什么。",
-      en: "Show where the task broke, who had to remediate it, and what the correct result should have been.",
+      zh: "说明你想参与的岗位、相关经历，以及你希望解决的问题。",
+      en: "Describe the role you want, relevant experience, and the problem you want to solve.",
     },
   },
   {
-    title: { zh: "一段反馈时间", en: "A feedback window" },
+    title: { zh: "简历", en: "Resume" },
     copy: {
-      zh: "团队里有人能在验证周期内回答追问并确认结论。",
-      en: "Someone on the team can answer follow-ups and confirm conclusions during the validation window.",
-    },
-  },
-];
-
-const steps: Item[] = [
-  {
-    title: { zh: "01 · 表达兴趣", en: "01 · Express interest" },
-    copy: {
-      zh: `写信到 ${siteConfig.contactEmail}，简单介绍团队、场景和当前瓶颈。我们目前在邀约制阶段，还没有开放自助注册。`,
-      en: `Email ${siteConfig.contactEmail} with a short introduction to your team, scenario, and bottleneck. We are invitation-only and do not offer self-service registration yet.`,
+      zh: "附上最新简历；GitHub、论文或项目链接可以放在简历或邮件正文中。",
+      en: "Attach your latest resume; GitHub, paper, or project links can go in the resume or email.",
     },
   },
   {
-    title: { zh: "02 · 场景对齐", en: "02 · Align on scenario" },
+    title: { zh: "作品集", en: "Portfolio" },
     copy: {
-      zh: "我们会安排一次约 30 分钟的沟通，确认任务是否适合当前验证范围，以及双方期待是否一致。",
-      en: "We schedule a 30-minute conversation to confirm task fit and whether expectations align.",
-    },
-  },
-  {
-    title: { zh: "03 · 早期接入", en: "03 · Early access" },
-    copy: {
-      zh: "通过筛选的团队会获得早期版本的接入方式与配套说明，并进入共创反馈通道。",
-      en: "Selected teams receive early-version access instructions and join the co-creation feedback channel.",
+      zh: "提供能代表你能力的作品集、项目清单或案例说明。",
+      en: "Share a portfolio, project list, or case notes that represent your work.",
     },
   },
 ];
 
-const brief = {
-  zh: ["团队 / 系统：", "工作流：", "参与人员：", "输入与工具：", "交付标准：", "当前瓶颈：", "数据边界："].join("\n"),
-  en: ["Team / system:", "Workflow:", "Participants:", "Inputs and tools:", "Delivery criteria:", "Current bottleneck:", "Data boundary:"].join("\n"),
-};
+const steps: Step[] = [
+  {
+    title: { zh: "01 · 发送申请", en: "01 · Send application" },
+    copy: {
+      zh: "CN 岗位发送至 hr001@oxygenai.top，Lab 岗位发送至 lab@oxygenai.top。",
+      en: "Send CN roles to hr001@oxygenai.top and Lab roles to lab@oxygenai.top.",
+    },
+  },
+  {
+    title: { zh: "02 · 初步沟通", en: "02 · Initial conversation" },
+    copy: {
+      zh: "我们会根据岗位匹配度安排一轮沟通，确认方向、经验和时间预期。",
+      en: "We schedule an initial conversation based on role fit to align on direction, experience, and timing.",
+    },
+  },
+  {
+    title: { zh: "03 · 面试与双向选择", en: "03 · Interviews and mutual fit" },
+    copy: {
+      zh: "围绕真实问题展开讨论，不用背答案；双方都确认合适后再进入下一步。",
+      en: "Discussions center on real problems rather than memorized answers; both sides confirm fit before moving ahead.",
+    },
+  },
+];
 
 const faqs: Faq[] = [
   {
-    q: { zh: "现在有公开 API 吗？", en: "Is there a public API now?" },
+    q: { zh: "现在有哪些职位？", en: "Which roles are open?" },
     a: {
-      zh: "还没有。产品与模型都处于早期验证阶段，我们优先保证共创团队的使用质量，暂不提供公开自助接入。",
-      en: "Not yet. Products and models are early; we prioritize co-creation quality and do not offer public self-service access yet.",
+      zh: "CN 总部开放产品、后端、平台/API、前端、美术与建模、商务/销售、客户成功和技术运营；Lab 开放模型负责人、训练/推理和评测/对齐岗位。",
+      en: "The CN headquarters is hiring across product, backend, platform/API, frontend, art/modeling, sales, customer success, and technical operations. The Lab is hiring a model lead, training/inference engineer, and evaluation/alignment engineer.",
     },
   },
   {
-    q: { zh: "早期接入会收费吗？", en: "Is early access paid?" },
+    q: { zh: "没有完全匹配的职位怎么办？", en: "What if no role matches exactly?" },
     a: {
-      zh: "现阶段不收费。我们先把有没有用验证清楚，商业化形态会在产品更稳定后再讨论。",
-      en: "Not at this stage. We first validate usefulness; commercialization is discussed after the product stabilizes.",
+      zh: "仍然可以投递。请在邮件里说明最适合你的方向，我们会按 CN 与 Lab 的实际需求判断。",
+      en: "You can still apply. Explain the direction that fits you best; we will route it against current CN and Lab needs.",
     },
   },
   {
-    q: { zh: "使用我的数据训练模型吗？", en: "Do you train on my data?" },
+    q: { zh: "远程办公如何安排？", en: "How does remote work work?" },
     a: {
-      zh: "不会。共创阶段的数据仅用于服务与产品研究，边界会写入接入协议。",
-      en: "No. Co-creation data is used only for service and product research; boundaries are written into access agreements.",
+      zh: "CN 岗位在 27Q2–27Q4 远程办公，27Q4 起需要为到杭州公司报告做准备；Lab 从 28Q1 起按意愿选择 CN/SG，此前远程。",
+      en: "CN roles are remote from 27Q2 through 27Q4, with preparation for reporting at the Hangzhou company from 27Q4. Lab roles choose CN or SG from 28Q1 and are remote before that.",
     },
   },
   {
-    q: { zh: "什么样的团队最适合？", en: "Which teams fit best?" },
+    q: { zh: "申请邮件需要包含什么？", en: "What should the application email include?" },
     a: {
-      zh: "有真实长任务、能提供失败样本，并且有人愿意在验证周期内持续确认结果的团队。",
-      en: "Teams with real long tasks, failure samples, and someone available to confirm results during validation.",
+      zh: "中文材料（如有）、英文全名、简短自我介绍、简历和作品集。",
+      en: "Chinese material if available, your full name in English, a brief introduction, a resume, and a portfolio.",
     },
   },
 ];
@@ -149,47 +133,28 @@ const faqs: Faq[] = [
 export default function Developers() {
   const { locale } = useI18n();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [copied, setCopied] = useState(false);
-
-  const copyBrief = async () => {
-    try {
-      await navigator.clipboard.writeText(brief[locale]);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
-    } catch {
-      setCopied(false);
-    }
-  };
 
   return (
-    <main id="main" className="about-page">
+    <main id="main" className="about-page developer-page">
       <section className="container about-hero" aria-labelledby="dev-hero-title">
-        <p className="eyebrow">{locale === "zh" ? "开发者" : "Developers"}</p>
-        <h1 id="dev-hero-title">{locale === "zh" ? "和我们一起验证长任务里的真实瓶颈。" : "Validate real long-task bottlenecks with us."}</h1>
-        <p className="lead" style={{ maxWidth: "60ch" }}>
-          {locale === "zh"
-            ? "Oxygen AI 的开发者计划目前采用邀约制。第一批共创团队优先来自真实工作流：有具体任务、明确边界，也愿意告诉我们哪里失败了。"
-            : "Oxygen AI's developer program is invitation-only. The first co-creation teams come from real workflows with concrete tasks, clear boundaries, and willingness to report failures."}
+        <p className="eyebrow">{locale === "zh" ? "加入我们" : "Careers"}</p>
+        <h1 id="dev-hero-title">
+          {locale === "zh" ? "可怕的不是犯错，而是不敢试错。" : "The real risk is not making mistakes. It is being afraid to try."}
+        </h1>
+        <p className="lead" style={{ maxWidth: "56ch" }}>
+          {locale === "zh" ? "加入 OxygenAI，与我们一起探索、创造。" : "Join OxygenAI to explore and build with us."}
         </p>
-        <div className="status-grid" aria-label={locale === "zh" ? "当前接入状态" : "Current access status"}>
-          {statuses.map((item) => (
-            <div key={item.label.en}>
-              <span>{item.label[locale]}</span>
-              <strong>{item.value[locale]}</strong>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className="container about-section" aria-labelledby="tracks-title">
         <div className="section-head">
-          <p className="eyebrow">{locale === "zh" ? "合作轨道" : "Tracks"}</p>
-          <h2 id="tracks-title">{locale === "zh" ? "三种参与方式。" : "Three ways to participate."}</h2>
+          <p className="eyebrow">{locale === "zh" ? "参与方式" : "Ways to join"}</p>
+          <h2 id="tracks-title">{locale === "zh" ? "两种参与方式。" : "Two ways to participate."}</h2>
           <p className="section-copy">
-            {locale === "zh" ? "不同轨道都从真实场景开始；我们不会为了演示效果制造伪需求。" : "Each track starts in a real scenario; we do not manufacture fake requirements for demos."}
+            {locale === "zh" ? "找到合适你的落点。" : "Find the place where you can contribute best."}
           </p>
         </div>
-        <div className="card-grid">
+        <div className="card-grid dev-track-grid">
           {tracks.map((item) => (
             <article className="card dev-track" key={item.title.en}>
               <p className="tag gray">{item.status[locale]}</p>
@@ -205,31 +170,32 @@ export default function Developers() {
         </div>
       </section>
 
-      <section className="container about-section" aria-labelledby="readiness-title">
-        <div className="split">
-          <div className="split-copy">
-            <p className="eyebrow">{locale === "zh" ? "准备清单" : "Readiness checklist"}</p>
-            <h2 id="readiness-title">{locale === "zh" ? "带着这四件事来，效率更高。" : "Bring these four things and we can move faster."}</h2>
-            <p>
-              {locale === "zh"
-                ? "我们不需要正式方案或完整数据。越接近真实工作现场，越容易判断哪些能力值得继续打磨。"
-                : "We do not need formal plans or complete data. The closer to real work, the easier it is to judge what to refine."}
-            </p>
-          </div>
-          <div className="stack-cards">
-            {readiness.map((item) => (
-              <article className="card" key={item.title.en}>
+      <section className="container about-section" aria-labelledby="requirements-title">
+        <div className="section-head">
+          <p className="eyebrow">{locale === "zh" ? "申请材料" : "Application materials"}</p>
+          <h2 id="requirements-title">{locale === "zh" ? "一封邮件，说明你是谁。" : "One email that shows who you are."}</h2>
+          <p className="section-copy">
+            {locale === "zh"
+              ? "我们接受申请邮件的要求是：中文（如有）、英文全名、简短自我介绍、简历和作品集。"
+              : "Your application email should include Chinese material if available, your full name in English, a brief introduction, a resume, and a portfolio."}
+          </p>
+        </div>
+        <div className="application-requirements">
+          {requirements.map((item, index) => (
+            <article className="requirement-row" key={item.title.en}>
+              <span className="requirement-index">{String(index + 1).padStart(2, "0")}</span>
+              <div>
                 <h3>{item.title[locale]}</h3>
                 <p>{item.copy[locale]}</p>
-              </article>
-            ))}
-          </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className="container about-section" aria-labelledby="steps-title">
         <div className="section-head">
-          <p className="eyebrow">{locale === "zh" ? "接入流程" : "Access process"}</p>
+          <p className="eyebrow">{locale === "zh" ? "申请流程" : "Application process"}</p>
           <h2 id="steps-title">{locale === "zh" ? "三步开始。" : "Start in three steps."}</h2>
         </div>
         <div className="timeline">
@@ -242,30 +208,36 @@ export default function Developers() {
         </div>
       </section>
 
-      <section className="container about-section" aria-labelledby="brief-title">
-        <div className="brief-shell">
-          <div className="brief-head">
-            <div>
-              <p className="eyebrow">{locale === "zh" ? "联系模板" : "Contact template"}</p>
-              <h2 id="brief-title">{locale === "zh" ? "可以用这份提纲写信。" : "Use this outline to write to us."}</h2>
+      <section className="container about-section" aria-labelledby="jobs-entry-title">
+        <div className="jobs-entry">
+          <div className="jobs-entry-copy">
+            <p className="eyebrow">{locale === "zh" ? "职业机会" : "Open roles"}</p>
+            <h2 id="jobs-entry-title">{locale === "zh" ? "查看当前开放职位。" : "Explore current openings."}</h2>
+            <p>
+              {locale === "zh"
+                ? "CN 总部开放 8 个方向，OxygenAI Lab 开放 3 个研究方向。进入职位列表后可以按团队筛选，也可以直接搜索岗位关键词。"
+                : "The CN headquarters has eight hiring directions and OxygenAI Lab has three research roles. Filter by team or search by role in the job list."}
+            </p>
+            <div className="jobs-entry-meta">
+              <span>CN · Hangzhou</span>
+              <span>OxygenAI Lab · CN / SG</span>
+              <span>{locale === "zh" ? "共 11 个职位" : "11 roles"}</span>
             </div>
-            <button className="button secondary compact" type="button" onClick={copyBrief}>
-              {copied ? (locale === "zh" ? "已复制" : "Copied") : (locale === "zh" ? "复制提纲" : "Copy outline")}
-            </button>
           </div>
-          <pre aria-label={locale === "zh" ? "联系提纲" : "Contact outline"}>{brief[locale]}</pre>
-          <p className="brief-note">
-            {locale === "zh" ? "把提纲发到 " : "Send the outline to "}
-            <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
-            {locale === "zh" ? "。空缺项可以直接写“还不确定”。" : ". It is fine to write \"not sure yet\" for missing items."}
-          </p>
+          <div className="jobs-entry-actions">
+            <a className="button primary" href="../careers/">
+              {locale === "zh" ? "查看职位列表" : "View open roles"}
+            </a>
+            <a className="text-link" href={`mailto:${siteConfig.hrEmail}`}>{siteConfig.hrEmail}</a>
+            <a className="text-link" href={`mailto:${siteConfig.labEmail}`}>{siteConfig.labEmail}</a>
+          </div>
         </div>
       </section>
 
       <section className="container about-section" aria-labelledby="faq-title">
         <div className="section-head">
           <p className="eyebrow">{locale === "zh" ? "常见问题" : "FAQ"}</p>
-          <h2 id="faq-title">{locale === "zh" ? "在你写信之前。" : "Before you write."}</h2>
+          <h2 id="faq-title">{locale === "zh" ? "投递之前。" : "Before you apply."}</h2>
         </div>
         <div className="accordion">
           {faqs.map((item, index) => {
@@ -302,12 +274,16 @@ export default function Developers() {
       <section className="container about-section" aria-labelledby="dev-cta-title">
         <div className="contact-panel">
           <div>
-            <h2 id="dev-cta-title">{locale === "zh" ? "有具体场景就写信吧。" : "Write to us with a concrete scenario."}</h2>
+            <h2 id="dev-cta-title">{locale === "zh" ? "没有看到完全匹配的职位？" : "No exact match yet?"}</h2>
             <p>
-              {locale === "zh" ? "介绍你的团队、工作流和当前瓶颈，我们会尽快回复。" : "Introduce your team, workflow, and current bottleneck; we will reply as soon as possible."}
+              {locale === "zh"
+                ? "仍然可以写信给我们。说明你想解决的问题和最适合的方向，我们会帮你转接到 CN 或 Lab。"
+                : "Write to us anyway. Tell us what you want to solve and where you fit best; we will route you to CN or the Lab."}
             </p>
           </div>
-          <a className="button primary" href={`mailto:${siteConfig.contactEmail}`}>{locale === "zh" ? "联系我们" : "Contact us"}</a>
+          <a className="button primary" href={`mailto:${siteConfig.hrEmail}`}>
+            {locale === "zh" ? "联系招聘团队" : "Contact recruiting"}
+          </a>
         </div>
       </section>
     </main>
